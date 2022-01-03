@@ -38,6 +38,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav ms-auto'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Alertas', 'url' => ['/site/alertas']],
+            ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
+            ['label' => 'Areas', 'url' => ['/site/areas']],
+            ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
