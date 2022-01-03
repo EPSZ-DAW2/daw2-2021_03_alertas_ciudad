@@ -126,7 +126,7 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-        /**
+    /**
      * Displays etiquetas.
      *
      * @return string
@@ -136,7 +136,7 @@ class SiteController extends Controller
         return $this->render('etiquetas');
     }
 
-        /**
+    /**
      * Displays alertas.
      *
      * @return string
@@ -146,7 +146,7 @@ class SiteController extends Controller
         return $this->render('alertas');
     }
 
-        /**
+    /**
      * Displays areas.
      *
      * @return string
@@ -156,7 +156,7 @@ class SiteController extends Controller
         return $this->render('areas');
     }
 
-        /**
+    /**
      * Displays incidencias.
      *
      * @return string
@@ -164,6 +164,16 @@ class SiteController extends Controller
     public function actionIncidencias()
     {
         return $this->render('incidencias');
+    }
+
+    /**
+     * Displays registrarse.
+     *
+     * @return string
+     */
+    public function actionRegistrarse()
+    {
+        return $this->render('registrarse');
     }
 }
 
