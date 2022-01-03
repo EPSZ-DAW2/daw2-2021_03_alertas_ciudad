@@ -125,4 +125,45 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+        /**
+     * Displays etiquetas.
+     *
+     * @return string
+     */
+    public function actionEtiquetas()
+    {
+        return $this->render('etiquetas');
+    }
+
+        /**
+     * Displays alertas.
+     *
+     * @return string
+     */
+    public function actionAlertas()
+    {
+        return $this->render('alertas');
+    }
+
+        /**
+     * Displays areas.
+     *
+     * @return string
+     */
+    public function actionAreas()
+    {
+        return $this->render('areas');
+    }
+
+        /**
+     * Displays incidencias.
+     *
+     * @return string
+     */
+    public function actionIncidencias()
+    {
+        return $this->render('incidencias');
+    }
 }
+
