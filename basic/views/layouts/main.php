@@ -104,23 +104,25 @@ AppAsset::register($this);
 
 
     NavBar::end();
-    
     ?>
 
 </header>
 
+
+
 <main role="main" class="flex-shrink-0">
     
-    <div class="container">
-    <?php
-    /* PARTE PRIVADA */
-    if(Yii::$app->user->identity == NULL) { echo "menu moderador";} else {  echo "menu admin";}
-    //if(Yii::$app->user->identity == "moderador") { echo "menu moderador";}
-    //if(Yii::$app->user->identity == "admin") {  echo "menu admin";}
-    //var_dump(Yii::$app->user->identity);
+        <?php
+        /* PARTE PRIVADA */
+        if(Yii::$app->user->identity != NULL) 
+        { 
+            echo " <div class='submenu'>ACCIONES CRUD</div>";
+        }
+        //if(Yii::$app->user->identity == "moderador") { echo "menu moderador";}
+        //if(Yii::$app->user->identity == "admin") {  echo "menu admin";}
     
-    ?>
-    </div>
+        ?>
+    
 
     <div class="container">
         <?= Breadcrumbs::widget([
