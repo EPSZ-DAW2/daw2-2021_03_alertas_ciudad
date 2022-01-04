@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=daw2_2021-22_03_alertas_ciudad',
+    'dsn' => 'mysql:host=localhost;dbname=daw2_alertas',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
