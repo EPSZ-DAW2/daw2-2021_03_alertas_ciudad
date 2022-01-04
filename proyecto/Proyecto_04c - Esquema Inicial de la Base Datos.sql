@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `daw2_alertas`.`usuarios` (
   `fecha_nacimiento` DATE NULL COMMENT 'Fecha de nacimiento del usuario o NULL si no lo quiere informar.',
   `direccion` TEXT NULL COMMENT 'Direccion del usuario o NULL si no quiere informar.',
   `area_id` INT(12) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Area/Zona de localización del usuario o CERO si no lo quiere informar (como si fuera NULL), aunque es recomendable.',
-  `rol` CHAR(1) NOT NULL COMMENT 'Código de la Clase / Tipo de Perfil: N=Normal, M=Moderador, A=Administrador',
+  `rol` CHAR(1) NOT NULL COMMENT 'Código de la Clase / Tipo de Perfil: N=Normal, M=Moderador, A=Administrador, S=SysAdmin',
   `fecha_registro` DATETIME NULL COMMENT 'Fecha y Hora de registro del usuario o NULL si no se conoce por algún motivo (que no debería ser).',
   `confirmado` TINYINT(1) NOT NULL COMMENT 'Indicador de usuario ha confirmado su registro o no.',
   `fecha_acceso` DATETIME NULL COMMENT 'Fecha y Hora del ultimo acceso del usuario. Debería estar a NULL si no ha accedido nunca.',
@@ -232,7 +232,12 @@ CREATE TABLE IF NOT EXISTS `daw2_alertas`.`usuarios` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
+INSERT INTO `daw2_alertas`.`usuarios` (id, email, password, nick, nombre, apellidos, rol, fecha_registro, confirmado) 
+VALUES 
+(1, 'sysadmin', 'sysadmin', 'sysAdmin', 'sysAdmin', 'Administrador', 'S', CURRENT_TIMESTAMP, 1),
+(2, 'admin', 'admin', 'admin', 'Admin', 'Administrador', 'A', CURRENT_TIMESTAMP, 1),
+(3, 'moderador', 'moderador', 'moderador', 'Moderador', 'Moderador', 'M', CURRENT_TIMESTAMP, 1),
+(4, 'usuario1', 'usuario1', 'usuario1', 'NombreUSU1', 'ApellidoUSU1', 'N', CURRENT_TIMESTAMP, 1);
 -- -----------------------------------------------------
 -- Table `daw2_alertas`.`usuarios_area_moderacion`
 -- -----------------------------------------------------
