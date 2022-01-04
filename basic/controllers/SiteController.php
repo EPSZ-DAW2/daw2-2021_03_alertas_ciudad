@@ -297,8 +297,8 @@ class SiteController extends Controller
                     $model->password = null;
                     $model->password_repeat = null;
                     $model->nick = null;
-                    $model->$nombre = null;
-                    $model->$apellidos = null;
+                    $model->nombre = null;
+                    $model->apellidos = null;
             
                     $msg = "Enhorabuena, ahora sólo falta que confirmes tu registro en tu cuenta de correo";
                 }

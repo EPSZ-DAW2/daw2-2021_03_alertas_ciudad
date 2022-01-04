@@ -35,31 +35,6 @@ AppAsset::register($this);
         ],
     ]);
 
-    /*echo Nav::widget([
-        'options' => ['class' => 'navbar-nav ms-auto'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Alertas', 'url' => ['/site/alertas']],
-            ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
-            ['label' => 'Areas', 'url' => ['/site/areas']],
-            ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']],
-                ['label' => 'Registrarse', 'url' => ['/site/registrarse']],
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);*/
     if(Yii::$app->user->isGuest == FALSE)
     {
         echo Nav::widget([
@@ -75,7 +50,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->user->identity->email . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
