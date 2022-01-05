@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrarseForm;
+use app\models\Usuarios;
 use app\models\Users;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
@@ -170,6 +171,24 @@ class SiteController extends Controller
     public function actionIncidencias()
     {
         return $this->render('incidencias');
+    }
+
+    /**
+     * Displays incidencias.
+     *
+     * @return string
+     */
+    public function actionPerfil()
+    {
+        $model = new Users();
+
+        if (($model = Usuarios::findOne(Yii::$app->user->id)) !== null) {
+            return $this->render("perfil", ["model" => $model,]);
+        }
+
+        return false;
+
+        
     }
  
     private function randKey($str='', $long=0)

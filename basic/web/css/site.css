@@ -6,12 +6,9 @@ main > .container {
     border:2px ridge black;/*comprobar el espacio que ocupa (solid dotted dashed double ridge groove inset outset) */
     margin:0mm;
     margin-right: 5%;
-    /*padding:1mm;*/
-    padding: 90px 15px 20px;
     background-color:#ffffff;
-    float:left;
-    width:20%; /*darle un ancho maximo al menu para poder colocarlo junto al contenido */
-    height:1000mm; /*si se quiere darle un alto maximo */
+    width:100%; /*darle un ancho maximo al menu para poder colocarlo junto al contenido */
+    height:100px; /*si se quiere darle un alto maximo */
     color:rgb(0, 0, 0);
     text-align: center;
   }

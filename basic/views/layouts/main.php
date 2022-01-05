@@ -47,6 +47,7 @@ AppAsset::register($this);
                 ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'Perfil', 'url' => ['/site/perfil']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
@@ -86,25 +87,71 @@ AppAsset::register($this);
 
 
 <main role="main" class="flex-shrink-0">
-    
-        <?php
-        /* PARTE PRIVADA */
-        if(Yii::$app->user->identity != NULL) 
-        { 
-            echo " <div class='submenu'>ACCIONES CRUD</div>";
-        }
-        //if(Yii::$app->user->identity == "moderador") { echo "menu moderador";}
-        //if(Yii::$app->user->identity == "admin") {  echo "menu admin";}
-    
-        ?>
-    
+  
 
     <div class="container">
+
+    <?php
+    if(Yii::$app->user->isGuest == FALSE)  {
+
+        if (Yii::$app->user->identity->rol != 'N'){
+
+            /* PARTE PRIVADA */
+
+        echo " <div class='submenu'>ACCIONES CRUD";
+        NavBar::begin([
+            'brandLabel' => '',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => '',
+            ],
+        ]);
+
+        if(Yii::$app->user->identity->rol == 'A') 
+        { 
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav '],
+                'items' => [
+                    ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
+                    ['label' => 'Alertas', 'url' => ['/alertas/index']],
+                    ['label' => 'Comentarios', 'url' => ['/alerta-comentarios/index']],
+                    ['label' => 'Imagenes', 'url' => ['/alerta-imagenes/index']],
+                    ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
+                    ['label' => 'Areas', 'url' => ['/areas/index']],
+                    ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
+                ],
+            ]);
+        }
+
+        if(Yii::$app->user->identity->rol == 'M')
+        { 
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav '],
+                'items' => [
+                    ['label' => 'Alertas', 'url' => ['/alertas/index']],
+                    ['label' => 'Comentarios', 'url' => ['/alerta-comentarios/index']],
+                    ['label' => 'Imagenes', 'url' => ['/alerta-imagenes/index']],
+                    ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
+                    ['label' => 'Areas', 'url' => ['/areas/index']],
+                    ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
+                ],
+            ]);
+        }
+
+        NavBar::end();
+        echo "</div>";
+        }
+        
+    }
+    
+    ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+
+  
     </div>
 
 </main>
