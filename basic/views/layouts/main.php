@@ -87,25 +87,52 @@ AppAsset::register($this);
 
 
 <main role="main" class="flex-shrink-0">
-    
-        <?php
+  
+
+    <div class="container">
+
+    <?php
         /* PARTE PRIVADA */
         if(Yii::$app->user->identity != NULL) 
         { 
-            echo " <div class='submenu'>ACCIONES CRUD</div>";
+            echo " <div class='submenu'>ACCIONES CRUD";
+            NavBar::begin([
+                'brandLabel' => '',
+                'brandUrl' => Yii::$app->homeUrl,
+                'options' => [
+                    'class' => '',
+                ],
+            ]);
+
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav '],
+                'items' => [
+                    ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
+                    ['label' => 'Alertas', 'url' => ['/site/alertas']],
+                    ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
+                    ['label' => 'Areas', 'url' => ['/site/areas']],
+                    ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
+                    ['label' => 'About', 'url' => ['/site/about']],
+                    ['label' => 'Contact', 'url' => ['/site/contact']],
+                    ['label' => 'Login', 'url' => ['/site/login']],
+                    ['label' => 'Registrarse', 'url' => ['/site/registrarse']],
+                ],
+            ]);
+
+            NavBar::end();
+            echo "</div>";
         }
         //if(Yii::$app->user->identity == "moderador") { echo "menu moderador";}
         //if(Yii::$app->user->identity == "admin") {  echo "menu admin";}
     
         ?>
-    
-
-    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+
+  
     </div>
 
 </main>
