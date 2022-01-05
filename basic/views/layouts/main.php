@@ -47,6 +47,7 @@ AppAsset::register($this);
                 ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'Perfil', 'url' => ['/site/perfil']],
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                 . Html::submitButton(
