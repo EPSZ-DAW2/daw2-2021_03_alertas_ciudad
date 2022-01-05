@@ -18,7 +18,7 @@ class AreasSearch extends Areas
     {
         return [
             [['id', 'clase_area_id', 'area_id'], 'integer'],
-            [['nombre', 'pais', 'estado', 'provincia', 'poblacion', 'zona'], 'safe'],
+            [['nombre'], 'safe'],
         ];
     }
 
@@ -63,12 +63,7 @@ class AreasSearch extends Areas
             'area_id' => $this->area_id,
         ]);
 
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'pais', $this->pais])
-            ->andFilterWhere(['like', 'estado', $this->estado])
-            ->andFilterWhere(['like', 'provincia', $this->provincia])
-            ->andFilterWhere(['like', 'poblacion', $this->poblacion])
-            ->andFilterWhere(['like', 'zona', $this->zona]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

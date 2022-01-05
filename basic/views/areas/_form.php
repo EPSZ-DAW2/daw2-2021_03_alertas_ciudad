@@ -12,21 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'clase_area_id')->textInput() ?>
+    <?= $form->field($model, 'clase_area_id')->dropDownList($model->clase_area(), array('options' => array('1'=>array('selected'=>true))))  ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'area_id')->textInput() ?>
-
-    <?= $form->field($model, 'pais')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'poblacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'zona')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

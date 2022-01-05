@@ -23,16 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'area_id') ?>
 
-    <?= $form->field($model, 'pais') ?>
-
-    <?php // echo $form->field($model, 'estado') ?>
-
-    <?php // echo $form->field($model, 'provincia') ?>
-
-    <?php // echo $form->field($model, 'poblacion') ?>
-
-    <?php // echo $form->field($model, 'zona') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

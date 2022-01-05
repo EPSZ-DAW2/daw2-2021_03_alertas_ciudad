@@ -30,11 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'clase_area_id',
             'nombre',
             'area_id',
-            'pais',
-            //'estado',
-            //'provincia',
-            //'poblacion',
-            //'zona',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
