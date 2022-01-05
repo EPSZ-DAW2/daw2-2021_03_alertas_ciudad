@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Areas */
+/* @var $model app\models\AlertaComentarios */
 
-$this->title = 'Create Areas';
-$this->params['breadcrumbs'][] = ['label' => 'Areas', 'url' => ['index']];
+$this->title = 'Create Alerta Comentarios';
+$this->params['breadcrumbs'][] = ['label' => 'Alerta Comentarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="areas-create">
+<div class="alerta-comentarios-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

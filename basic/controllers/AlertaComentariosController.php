@@ -2,16 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Areas;
-use app\models\AreasSearch;
+use app\models\AlertaComentarios;
+use app\models\AlertaComentariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AreasController implements the CRUD actions for Areas model.
+ * AlertaComentariosController implements the CRUD actions for AlertaComentarios model.
  */
-class AreasController extends Controller
+class AlertaComentariosController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,12 +32,12 @@ class AreasController extends Controller
     }
 
     /**
-     * Lists all Areas models.
+     * Lists all AlertaComentarios models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AreasSearch();
+        $searchModel = new AlertaComentariosSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +47,7 @@ class AreasController extends Controller
     }
 
     /**
-     * Displays a single Areas model.
+     * Displays a single AlertaComentarios model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,13 +60,13 @@ class AreasController extends Controller
     }
 
     /**
-     * Creates a new Areas model.
+     * Creates a new AlertaComentarios model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Areas();
+        $model = new AlertaComentarios();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -82,7 +82,7 @@ class AreasController extends Controller
     }
 
     /**
-     * Updates an existing Areas model.
+     * Updates an existing AlertaComentarios model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -102,7 +102,7 @@ class AreasController extends Controller
     }
 
     /**
-     * Deletes an existing Areas model.
+     * Deletes an existing AlertaComentarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -116,15 +116,15 @@ class AreasController extends Controller
     }
 
     /**
-     * Finds the Areas model based on its primary key value.
+     * Finds the AlertaComentarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Areas the loaded model
+     * @return AlertaComentarios the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Areas::findOne($id)) !== null) {
+        if (($model = AlertaComentarios::findOne($id)) !== null) {
             return $model;
         }
 

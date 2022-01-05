@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\AreasSearch */
+/* @var $model app\models\CategoriasSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="areas-search">
+<div class="categorias-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,21 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'clase_area_id') ?>
-
     <?= $form->field($model, 'nombre') ?>
 
-    <?= $form->field($model, 'area_id') ?>
+    <?= $form->field($model, 'descripcion') ?>
 
-    <?= $form->field($model, 'pais') ?>
-
-    <?php // echo $form->field($model, 'estado') ?>
-
-    <?php // echo $form->field($model, 'provincia') ?>
-
-    <?php // echo $form->field($model, 'poblacion') ?>
-
-    <?php // echo $form->field($model, 'zona') ?>
+    <?= $form->field($model, 'categoria_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

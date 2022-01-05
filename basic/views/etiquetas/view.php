@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Areas */
+/* @var $model app\models\Etiquetas */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Areas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Etiquetas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="areas-view">
+<div class="etiquetas-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,14 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'clase_area_id',
             'nombre',
-            'area_id',
-            'pais',
-            'estado',
-            'provincia',
-            'poblacion',
-            'zona',
         ],
     ]) ?>
 

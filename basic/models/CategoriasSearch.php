@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Areas;
+use app\models\Categorias;
 
 /**
- * AreasSearch represents the model behind the search form of `app\models\Areas`.
+ * CategoriasSearch represents the model behind the search form of `app\models\Categorias`.
  */
-class AreasSearch extends Areas
+class CategoriasSearch extends Categorias
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AreasSearch extends Areas
     public function rules()
     {
         return [
-            [['id', 'clase_area_id', 'area_id'], 'integer'],
-            [['nombre', 'pais', 'estado', 'provincia', 'poblacion', 'zona'], 'safe'],
+            [['id', 'categoria_id'], 'integer'],
+            [['nombre', 'descripcion'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class AreasSearch extends Areas
      */
     public function search($params)
     {
-        $query = Areas::find();
+        $query = Categorias::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,11 @@ class AreasSearch extends Areas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'clase_area_id' => $this->clase_area_id,
-            'area_id' => $this->area_id,
+            'categoria_id' => $this->categoria_id,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'pais', $this->pais])
-            ->andFilterWhere(['like', 'estado', $this->estado])
-            ->andFilterWhere(['like', 'provincia', $this->provincia])
-            ->andFilterWhere(['like', 'poblacion', $this->poblacion])
-            ->andFilterWhere(['like', 'zona', $this->zona]);
+            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
 
         return $dataProvider;
     }
