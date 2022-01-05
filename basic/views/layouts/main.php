@@ -92,40 +92,59 @@ AppAsset::register($this);
     <div class="container">
 
     <?php
-        /* PARTE PRIVADA */
-        if(Yii::$app->user->identity != NULL) 
-        { 
-            echo " <div class='submenu'>ACCIONES CRUD";
-            NavBar::begin([
-                'brandLabel' => '',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => '',
-                ],
-            ]);
+    if(Yii::$app->user->isGuest == FALSE)  {
 
+        if (Yii::$app->user->identity->rol != 'N'){
+
+            /* PARTE PRIVADA */
+
+        echo " <div class='submenu'>ACCIONES CRUD";
+        NavBar::begin([
+            'brandLabel' => '',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => '',
+            ],
+        ]);
+
+        if(Yii::$app->user->identity->rol == 'A') 
+        { 
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav '],
                 'items' => [
                     ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
-                    ['label' => 'Alertas', 'url' => ['/site/alertas']],
-                    ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
-                    ['label' => 'Areas', 'url' => ['/site/areas']],
-                    ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
-                    ['label' => 'About', 'url' => ['/site/about']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
-                    ['label' => 'Login', 'url' => ['/site/login']],
-                    ['label' => 'Registrarse', 'url' => ['/site/registrarse']],
+                    ['label' => 'Alertas', 'url' => ['/alertas/index']],
+                    ['label' => 'Comentarios', 'url' => ['/alerta-comentarios/index']],
+                    ['label' => 'Imagenes', 'url' => ['/alerta-imagenes/index']],
+                    ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
+                    ['label' => 'Areas', 'url' => ['/areas/index']],
+                    ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
                 ],
             ]);
-
-            NavBar::end();
-            echo "</div>";
         }
-        //if(Yii::$app->user->identity == "moderador") { echo "menu moderador";}
-        //if(Yii::$app->user->identity == "admin") {  echo "menu admin";}
+
+        if(Yii::$app->user->identity->rol == 'M')
+        { 
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav '],
+                'items' => [
+                    ['label' => 'Alertas', 'url' => ['/alertas/index']],
+                    ['label' => 'Comentarios', 'url' => ['/alerta-comentarios/index']],
+                    ['label' => 'Imagenes', 'url' => ['/alerta-imagenes/index']],
+                    ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
+                    ['label' => 'Areas', 'url' => ['/areas/index']],
+                    ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
+                ],
+            ]);
+        }
+
+        NavBar::end();
+        echo "</div>";
+        }
+        
+    }
     
-        ?>
+    ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
