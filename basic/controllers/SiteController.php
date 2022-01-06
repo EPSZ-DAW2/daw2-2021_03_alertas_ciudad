@@ -78,6 +78,10 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        //$db = new yii\db\Connection;
+        //$num_intentos = $db->createCommand('SELECT * FROM configuraciones WHERE variable=num_intentos_usuario')
+         //  ->queryOne();
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -90,6 +94,7 @@ class SiteController extends Controller
         $model->password = '';
         return $this->render('login', [
             'model' => $model,
+            //'intentos' => $num_intentos,
         ]);
     }
 
@@ -194,7 +199,7 @@ class SiteController extends Controller
            return $key;
        }
      
-    public function actionConfirm()
+    public function actionConfirm() //Confirmar correo
     {
        $table = new Users;
        if (Yii::$app->request->get())
@@ -273,7 +278,8 @@ class SiteController extends Controller
                 $table->fecha_registro = date("Y-m-d H:i:s");
                 $table->confirmado = 0;
                 //Encriptamos el password
-                $table->password = crypt($model->password, Yii::$app->params["salt"]);
+                $table->password = base64_encode(Yii::$app->getSecurity()->encryptByPassword($table->password, Yii::$app->params["salt"]));
+                //$table->password = crypt($model->password, Yii::$app->params["salt"]);
                 /*//Creamos una cookie para autenticar al usuario cuando decida recordar la sesión, esta misma
                 //clave será utilizada para activar el usuario
                 $table->authKey = $this->randKey("abcdef0123456789", 200);
