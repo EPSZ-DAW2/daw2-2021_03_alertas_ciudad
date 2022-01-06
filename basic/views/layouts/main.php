@@ -119,6 +119,8 @@ AppAsset::register($this);
                     ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
                     ['label' => 'Areas', 'url' => ['/areas/index']],
                     ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
+                    ['label' => 'Configuraciones', 'url' => ['/configuraciones/index']],
+                    ['label' => 'Logs', 'url' => ['/logs/index']],
                 ],
             ]);
         }
