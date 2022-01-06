@@ -42,7 +42,6 @@ AppAsset::register($this);
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'Alertas', 'url' => ['/site/alertas']],
-                ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
                 ['label' => 'Areas', 'url' => ['/site/areas']],
                 ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
                 ['label' => 'About', 'url' => ['/site/about']],
@@ -67,7 +66,6 @@ AppAsset::register($this);
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'Alertas', 'url' => ['/site/alertas']],
-                ['label' => 'Etiquetas', 'url' => ['/site/etiquetas']],
                 ['label' => 'Areas', 'url' => ['/site/areas']],
                 ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
                 ['label' => 'About', 'url' => ['/site/about']],

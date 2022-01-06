@@ -134,16 +134,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays etiquetas.
-     *
-     * @return string
-     */
-    public function actionEtiquetas()
-    {
-        return $this->render('etiquetas');
-    }
-
-    /**
      * Displays alertas.
      *
      * @return string
