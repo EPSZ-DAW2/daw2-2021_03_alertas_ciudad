@@ -115,6 +115,30 @@ class UsuarioIncidenciasController extends Controller
         return $this->redirect(['index']);
     }
 
+    /*
+      Acción de responder a una incidencia
+        se responderá con otra incidencia en la que no se puedan cambiar ni origen ni destino
+        dependiendo de a quien respondas
+    */
+
+    public function actionAnswer($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['create', 'id' => $model->id]);
+        }
+
+        $model->crea_fecha=null;
+        $model->texto=null;
+        $model->clase_incidencia_id="R";  //cuando sea una respuesta, que el tipo sea siempre R
+        
+
+        return $this->render('answer', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Finds the UsuarioIncidencias model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
