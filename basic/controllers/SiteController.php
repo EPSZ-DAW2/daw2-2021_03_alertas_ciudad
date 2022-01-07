@@ -164,7 +164,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays incidencias.
+     * Displays perfil.
      *
      * @return string
      */
@@ -179,6 +179,16 @@ class SiteController extends Controller
         return false;
 
         
+    }
+
+        /**
+     * Displays copia de seguridad.
+     *
+     * @return string
+     */
+    public function actionCopiaseguridad()
+    {
+        return $this->render('copiaseguridad');   
     }
  
     private function randKey($str='', $long=0)
