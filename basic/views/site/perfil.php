@@ -30,7 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'email:email',
-            'password',
             'nick',
             'nombre',
             'apellidos',
@@ -43,7 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
+<?= Html::a('Cambiar datos', ['usuarios/updatepublico', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+<hr>
 <?php 
 
 if($model->rol == 'Administrador del Sistema')
