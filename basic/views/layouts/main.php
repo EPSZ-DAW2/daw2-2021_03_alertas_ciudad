@@ -120,7 +120,7 @@ AppAsset::register($this);
                     ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
                     ['label' => 'Configuraciones', 'url' => ['/configuraciones/index']],
                     ['label' => 'Logs', 'url' => ['/logs/index']],
-                    ['label' => 'Copia de Seguridad', 'url' => ['/site/copiaseguridad']],
+                    ['label' => 'Crear copia de Seguridad', 'url' => ['/site/copiaseguridad']],
                 ],
             ]);
         }
