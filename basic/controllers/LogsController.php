@@ -81,6 +81,28 @@ class LogsController extends Controller
         ]);
     }
 
+        /**
+     * DELETE ALL a new Logs model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionDeleteall()
+    {
+        $model = new Logs();
+
+        if ($this->request->isPost) {
+            if ($model->deleteAll()) {
+                return $this->redirect(['index']);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('index', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing Logs model.
      * If update is successful, the browser will be redirected to the 'view' page.
