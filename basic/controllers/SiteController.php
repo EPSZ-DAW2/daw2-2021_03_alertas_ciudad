@@ -16,6 +16,9 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\models\Areas;
+use app\models\AreasSearch;
+
 
 class SiteController extends Controller
 {
@@ -150,7 +153,15 @@ class SiteController extends Controller
      */
     public function actionAreas()
     {
-        return $this->render('areas');
+        $searchModel = new AreasSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('areas', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
     }
 
     /**

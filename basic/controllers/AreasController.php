@@ -48,6 +48,8 @@ class AreasController extends Controller
         ]);
     }
 
+   
+
     /**
      * Displays a single Areas model.
      * @param int $id ID
