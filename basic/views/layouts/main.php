@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\base\Application;
 
 AppAsset::register($this);
 ?>
@@ -105,7 +106,7 @@ AppAsset::register($this);
             ],
         ]);
 
-        if(Yii::$app->user->identity->rol == 'A') 
+        if((Yii::$app->user->identity->rol == 'A') || (Yii::$app->user->identity->rol == 'S') )
         { 
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav '],
@@ -119,6 +120,7 @@ AppAsset::register($this);
                     ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
                     ['label' => 'Configuraciones', 'url' => ['/configuraciones/index']],
                     ['label' => 'Logs', 'url' => ['/logs/index']],
+                    ['label' => 'Crear copia de Seguridad', 'url' => ['/site/copiaseguridad']],
                 ],
             ]);
         }
