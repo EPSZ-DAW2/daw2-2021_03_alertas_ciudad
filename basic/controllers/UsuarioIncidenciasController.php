@@ -75,6 +75,7 @@ class UsuarioIncidenciasController extends Controller
         } else {
             $model->loadDefaultValues();
         }
+        $model->crea_fecha=date("Y-m-d H:m:s");
 
         return $this->render('create', [
             'model' => $model,
@@ -129,14 +130,15 @@ class UsuarioIncidenciasController extends Controller
             return $this->redirect(['create', 'id' => $model->id]);
         }
 
-        $model->crea_fecha=null;
+        $model->crea_fecha=date("Y-m-d H:m:s");
         $model->texto=null;
         $model->clase_incidencia_id="R";  //cuando sea una respuesta, que el tipo sea siempre R
         
-
+        
         return $this->render('answer', [
             'model' => $model,
         ]);
+        
     }
 
     /**
