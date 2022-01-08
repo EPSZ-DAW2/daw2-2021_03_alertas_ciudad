@@ -1,1 +1,6 @@
-<h1>Hola esta es la pagina de alertas</h1>
+<?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+?>
+<h1>ALERTAS</h1>
+

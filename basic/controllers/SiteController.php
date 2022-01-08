@@ -16,12 +16,17 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\models\AlertasSearch;
+use app\models\Alertas;
 
 class SiteController extends Controller
 {
     /**
      * {@inheritdoc}
      */
+
+
+
     public function behaviors()
     {
         return [
@@ -334,5 +339,8 @@ class SiteController extends Controller
         }
         return $this->render("registrarse", ["model" => $model, "msg" => $msg]);
     }
+
+
+    
 }
 
