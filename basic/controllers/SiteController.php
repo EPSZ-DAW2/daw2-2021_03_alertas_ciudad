@@ -278,8 +278,8 @@ class SiteController extends Controller
                 $table->fecha_registro = date("Y-m-d H:i:s");
                 $table->confirmado = 0;
                 //Encriptamos el password
-                //Esto es lo que tienen los de cocina $table->password = hash("sha1", $_POST['Usuarios']['password']);
-                $table->password = crypt($table->password, 'encriptar');
+                //???? $table->password = hash("sha1", $_POST['Usuarios']['password']);
+                $table->password = $model->password;//crypt($table->password, 'encriptar');
                 //$table->password = crypt($model->password, Yii::$app->params["salt"]);
                 /*//Creamos una cookie para autenticar al usuario cuando decida recordar la sesión, esta misma
                 //clave será utilizada para activar el usuario

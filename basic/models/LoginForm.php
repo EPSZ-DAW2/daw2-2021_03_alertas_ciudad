@@ -32,6 +32,7 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            //['password', 'authenticate'],
         ];
     }
 
@@ -80,4 +81,47 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    /**
+
+     * Authenticates the password.
+
+     * This is the 'authenticate' validator as declared in rules().
+
+     */
+/*
+    public function authenticate($attribute,$params)
+
+    {
+
+        $this->_identity= new User($this->email,$this->password);
+
+                if(!$this->_identity->authenticate()) 
+                {
+
+                   $failedCount = Yii::app()->user->hasState('loginFailed') ?  Yii::app()->user->getState('loginFailed') : 0;    
+                   $failedCount++;
+
+                   Yii::app()->user->setState('loginFailed',$failedCount);
+
+                   if($failedCount>5) 
+
+                   {            
+                    $this->addError('password','Incorrect username or password.');
+
+                     //reset for the next 5 attempts
+
+                     //Yii::app()->user->setState('loginFailed',0);    
+
+                    } 
+
+                }
+
+                else
+
+                  if(Yii::app()->user->hasState('loginFailed'))
+
+                      Yii::app()->user->setState('loginFailed',null); //remove from session of login ok   
+
+    }*/
 }
