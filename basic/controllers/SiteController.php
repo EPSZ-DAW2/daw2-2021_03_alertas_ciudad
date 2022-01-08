@@ -16,14 +16,13 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
-<<<<<<< HEAD
+
 use app\models\AlertasSearch;
 use app\models\Alertas;
-=======
+
 use app\models\Areas;
 use app\models\AreasSearch;
 
->>>>>>> 36515a377e0a6d74eea4291ad2ab1fda59946a1a
 
 class SiteController extends Controller
 {
