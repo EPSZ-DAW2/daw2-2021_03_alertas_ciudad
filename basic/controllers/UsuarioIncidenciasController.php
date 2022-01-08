@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
  */
 class UsuarioIncidenciasController extends Controller
 {
+
     /**
      * @inheritDoc
      */
