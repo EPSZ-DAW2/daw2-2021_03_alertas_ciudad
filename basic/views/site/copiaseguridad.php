@@ -5,17 +5,19 @@ $db = require __DIR__ . '../../../config/db_orig.php';
 //Introduzca aquí la información de su base de datos y el nombre del archivo de copia de seguridad.
 $fecha= date("Ymd-His");
 $mysqlDatabaseName ='daw2_alertas';
-$mysqlUserName ='root@localhost';
+$mysqlUserName =$db['username'];
 $mysqlPassword =$db['password'];
 $mysqlHostName ='localhost';
-$mysqlExportPath = $mysqlDatabaseName.'_'.$fecha.'.sql';
+$mysqlExportPath = 'copiaseguridad/'.$mysqlDatabaseName.'_'.$fecha.'.sql';
 
 
 //$command='mysqldump --user='.$mysqlUserName. '--password='.$mysqlPassword. '--host='.$mysqlHostName. ''.$mysqlDatabaseName.' > '.$mysqlExportPath;
-$command="mysqldump -u$mysqlUserName --p $mysqlDatabaseName > $mysqlExportPath";
-exec($command,$output,$worked);
-var_dump($output);
-switch($worked){
+$command="mysqldump -u $mysqlUserName --p $mysqlDatabaseName > $mysqlExportPath";
+
+system($command,$output);
+echo $command;
+echo "<hr>";
+switch($output){
 case 0:
 echo 'La base de datos <b>' .$mysqlDatabaseName .'</b> se ha almacenado correctamente en la siguiente ruta '.getcwd().'/' .$mysqlExportPath .'</b>';
 break;
