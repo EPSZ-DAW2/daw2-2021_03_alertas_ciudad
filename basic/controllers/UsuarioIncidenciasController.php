@@ -124,18 +124,32 @@ class UsuarioIncidenciasController extends Controller
 
     public function actionAnswer($id)
     {
-        $model = $this->findModel($id);
-
+        $modelbase = $this->findModel($id);
+        $model = new UsuarioIncidencias();
+/*
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['create', 'id' => $model->id]);
         }
+*/
+        //Yii::$app->user->id -> sacamos el id de la sesión 
+        
 
+        //$model->id=null; 
         $model->crea_fecha=date("Y-m-d H:m:s");
         $model->texto=null;
         $model->clase_incidencia_id="R";  //cuando sea una respuesta, que el tipo sea siempre R
+        $aux=$modelbase->origen_usuario_id;  //guardamos el valor en auxiliar
+        $model->origen_usuario_id=$modelbase->destino_usuario_id;
+        $model->alerta_id=$modelbase->alerta_id; 
+        $model->comentario_id=$modelbase->comentario_id; 
+         // el base tiene los datos del modelo que estamos respondiendo y el model no tiene ninguno, pasamos solo lo que queremos
+        $model->destino_usuario_id=$aux;
         
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
         
-        return $this->render('answer', [
+        return $this->render('create', [
             'model' => $model,
         ]);
         

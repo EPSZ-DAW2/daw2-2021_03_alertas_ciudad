@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fecha_aceptado')->textInput() ?>
 
+    <?  //cuando haga la parte `publica, quitar los datos que sean del admin solo ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
