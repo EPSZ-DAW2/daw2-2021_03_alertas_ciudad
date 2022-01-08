@@ -3,15 +3,16 @@
 $db = require __DIR__ . '../../../config/db_orig.php';
 
 //Introduzca aquí la información de su base de datos y el nombre del archivo de copia de seguridad.
+$fecha= date("Ymd-His");
 $mysqlDatabaseName ='daw2_alertas';
-$mysqlUserName =$db['username'];
+$mysqlUserName ='root@localhost';
 $mysqlPassword =$db['password'];
-$mysqlHostName ='127.0.0.1';
-$mysqlExportPath ='copiaseguridaddaw2.sql';
+$mysqlHostName ='localhost';
+$mysqlExportPath = $mysqlDatabaseName.'_'.$fecha.'.sql';
 
 
-$command='mysqldump --user='.$mysqlUserName. '--password='.$mysqlPassword. '--host='.$mysqlHostName. ''.$mysqlDatabaseName.' > '.$mysqlExportPath;
-//$command='mysqldump ' .$mysqlDatabaseName .' > ' .$mysqlExportPath;
+//$command='mysqldump --user='.$mysqlUserName. '--password='.$mysqlPassword. '--host='.$mysqlHostName. ''.$mysqlDatabaseName.' > '.$mysqlExportPath;
+$command="mysqldump -u$mysqlUserName --p $mysqlDatabaseName > $mysqlExportPath";
 exec($command,$output,$worked);
 var_dump($output);
 switch($worked){
