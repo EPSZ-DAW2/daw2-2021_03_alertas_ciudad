@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 
 /* @var $this yii\web\View */
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Usuario Incidencias', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Usuario Incidencias', ['usuario-incidencias/createpublico'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -39,41 +40,19 @@ $this->params['breadcrumbs'][] = $this->title;
             //'fecha_borrado',
             //'fecha_aceptado',
 
-            ['class' => 'yii\grid\ActionColumn'],  //los botones 
-        ],
+            ['class' => 'yii\grid\ActionColumn',
+                'header' => 'Incidencias',
+                'template' => '{incidencias}',
+                'buttons'=>[
+
+                    'incidencias'=>function ($url,$model) {
+                        $base= explode('&',$url);
+                        return Html::a('<span class="material-icons md-light md-inactive">area_chart</span>', $base[0]."&UsuarioIncidenciasSearch%5Barea_id%5D=".$model->area_id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                    },
+            ],  //los botones 
+        ]
     ]); ?>
 
 
 </div>
-<?php
-use yii\widgets\ActiveForm;
-?>
-
-<h1>Incidencias del Usuario</h1>
-<ul>
-<?php //foreach ($dataProvider->getModels() as $usuario_incidencias): ?>
-    <li>
-        <?//= Html::encode("{$usuario_incidencias->crea_fecha} ({$incidencias->clase_incidencia})") ?>:
-        <?//= $incidencias->texto ?>
-    </li>
-<?php// endforeach; ?>
-</ul>
-
-<?php
-$usuario_incidencias = User::model()->findByAttributes('id' => Yii::app()->user->id); // Recuperas un profesor mediante el identificador del usuario logueado
-
-if(isset($usuario_incidencias->id))// Considero que en tu modelo TEACHER tienes declarada la relation "relSubjects".
-
-{
-
-     foreach($usuario_incidencias->id as $incidencia)
-
-     {
-
-          echo($incidencia->crea_fecha);
-
-     }
-
-}
-?>
 

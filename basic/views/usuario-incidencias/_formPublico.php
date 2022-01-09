@@ -22,18 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'origen_usuario_id')->textInput() ?>
 
-    <? // = $form->field($model, 'alerta_id')->textInput() ?>
-
-    <? // = $form->field($model, 'comentario_id')->textInput() ?>
-
-    <? // = $form->field($model, 'fecha_lectura')->textInput() ?>
-
-    <? // = $form->field($model, 'fecha_borrado')->textInput() ?>
-
-    <? // = $form->field($model, 'fecha_aceptado')->textInput() ?>
-
-    <?  //cuando haga la parte `publica, quitar los datos que sean del admin solo ?>
-
+    <!-- El resto del formulario oculto porque es la parte pública  -->
+   
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

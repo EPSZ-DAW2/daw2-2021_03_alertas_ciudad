@@ -13,17 +13,31 @@ use app\models\RegistrarseForm;
 use app\models\Usuarios;
 use app\models\Users;
 use app\models\UsuarioIncidencias;
+use app\models\UsuarioIncidenciasSearch;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\swiftmailer\Mailer;
+use yii\web\NotFoundHttpException;
+
+
+use app\models\AlertasSearch;
+use app\models\Alertas;
+
+use app\models\Areas;
+use app\models\AreasSearch;
+
+
 
 class SiteController extends Controller
 {
     /**
      * {@inheritdoc}
      */
+
+
+
     public function behaviors()
     {
         return [
@@ -105,6 +119,13 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Logout action.
      *
@@ -152,7 +173,15 @@ class SiteController extends Controller
      */
     public function actionAlertas()
     {
-        return $this->render('alertas');
+        $searchModel = new AlertasSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('alertas', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
     }
 
     /**
@@ -162,8 +191,19 @@ class SiteController extends Controller
      */
     public function actionAreas()
     {
-        return $this->render('areas');
+        $searchModel = new AreasSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('areas', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
     }
+
+
+    
 
     /**
      * Displays incidencias.
@@ -172,7 +212,18 @@ class SiteController extends Controller
      */
     public function actionIncidencias()
     {
-        return $this->render('incidencias');
+        $model = new UsuarioIncidenciasSearch();
+        $dataProvider = $model->search($this->request->queryParams);
+
+        if (($model = Usuarios::findOne(Yii::$app->user->id)) !== null) {
+            return $this->render("incidencias", ["searchModel" => $model,
+            'dataProvider' => $dataProvider,]);
+        }
+
+        return false;
+       
+       
+        //return $this->render('incidencias');
     }
 
     /**
@@ -403,5 +454,17 @@ class SiteController extends Controller
 
         return $this->render("registrarse", ["model" => $model, "msg" => $msg]);
     }
+
+        protected function findModel($id)
+    {
+        if (($model = Alertas::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+    
 }
 

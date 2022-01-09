@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'clase_incidencia_id',
             'texto:ntext',
             'destino_usuario_id',
-            //'origen_usuario_id',
+            'origen_usuario_id',
             //'alerta_id',
             //'comentario_id',
             //'fecha_lectura',
