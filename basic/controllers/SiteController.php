@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\NotFoundHttpException;
+
 
 use app\models\AlertasSearch;
 use app\models\Alertas;
@@ -103,6 +105,13 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Logout action.
      *
@@ -150,7 +159,15 @@ class SiteController extends Controller
      */
     public function actionAlertas()
     {
-        return $this->render('alertas');
+        $searchModel = new AlertasSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('alertas', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
     }
 
     /**
@@ -351,6 +368,15 @@ class SiteController extends Controller
             }
         }
         return $this->render("registrarse", ["model" => $model, "msg" => $msg]);
+    }
+
+        protected function findModel($id)
+    {
+        if (($model = Alertas::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 
