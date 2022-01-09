@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'adminEmail' => 'pruebaweb099@gmail.com.com',
     'title' => 'Aplicación Yii',
     'salt' => 'fsddsflj38343lj0',
 ];

@@ -5,8 +5,6 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use app\models\Alertas;
-use app\models\AlertasSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -20,9 +18,11 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\swiftmailer\Mailer;
+use app\models\AlertasSearch;
+use app\models\Alertas;
 use app\models\AlertaComentariosSearch;
 use app\models\AlertaComentarios;
-
 use app\models\Areas;
 use app\models\AreasSearch;
 
@@ -333,7 +333,7 @@ class SiteController extends Controller
                if ($model->count() == 1)
                {
                    $activar = Users::findOne($id);
-                   $activar->activate = 1;
+                   $activar->confirmado = 1;
                    if ($activar->update())
                    {
                        echo "Enhorabuena registro llevado a cabo correctamente, redireccionando ...";
@@ -456,12 +456,12 @@ class SiteController extends Controller
             
                     $subject = "Confirmar registro";
                     $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-                    $body .= "<a href='http://yii.local/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
+                    $body .= "<a href='http://localhost/GIT_Eufen/daw2-2021_03_alertas_ciudad/basic/web/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
             
                     //Enviamos el correo
                     Yii::$app->mailer->compose()
                     ->setTo($user->email)
-                    ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
+                    ->setFrom('pruebaweb099@gmail.com')
                     ->setSubject($subject)
                     ->setHtmlBody($body)
                     ->send();
