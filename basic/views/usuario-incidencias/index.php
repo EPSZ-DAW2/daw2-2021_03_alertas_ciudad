@@ -1,15 +1,13 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\DetailView;
-use yii\widgets\ActiveForm;
-
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuarioIncidenciasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Incidencias del Usuario';
+$this->title = 'Usuario Incidencias';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-incidencias-index">
@@ -17,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Usuario Incidencias', ['usuario-incidencias/createpublico'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Usuario Incidencias', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -40,19 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'fecha_borrado',
             //'fecha_aceptado',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'header' => 'Incidencias',
-                'template' => '{incidencias}',
-                'buttons'=>[
-
-                    'incidencias'=>function ($url,$model) {
-                        $base= explode('&',$url);
-                        return Html::a('<span class="material-icons md-light md-inactive">area_chart</span>', $base[0]."&UsuarioIncidenciasSearch%5Barea_id%5D=".$model->area_id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
-                    },
-            ],  //los botones 
-        ]
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
     ]); ?>
 
 
 </div>
-
