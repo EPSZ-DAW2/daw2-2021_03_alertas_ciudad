@@ -5,7 +5,9 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-
+use app\models\Alertas;
+use app\models\AlertasSearch;
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -88,7 +90,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new Alertas();
+
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -328,8 +334,8 @@ class SiteController extends Controller
                //Realizamos la consulta para obtener el registro
                $model = $table
                ->find()
-               ->where("id=:id", [":id" => $id])
-               ->andWhere("authKey=:authKey", [":authKey" => $authKey]);
+               ->where("id=:id", [":id" => $id]);
+               //->andWhere("authKey=:authKey", [":authKey" => $authKey]);
     
                //Si el registro existe
                if ($model->count() == 1)
