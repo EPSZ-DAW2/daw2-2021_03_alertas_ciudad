@@ -50,7 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('<span class="material-icons md-light md-inactive">area_chart</span>', $base[0]."&UsuarioIncidenciasSearch%5Barea_id%5D=".$model->area_id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                     },
             ],  //los botones 
-        ]
+        ],
+     ],
     ]); ?>
 
 
