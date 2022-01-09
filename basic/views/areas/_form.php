@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'area_id')->textInput() ?>
+    <?= $form->field($model, 'area_id')->hiddenInput(['readonly' => true, 'value' => $model->isNewRecord ? (isset($area_id)? $area_id : 0) : $model->area_id])->label(false) ?>
+
+    <?= $form->field($model, 'area_padre')->textInput(['readonly' => true, 'value' => $padre]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
