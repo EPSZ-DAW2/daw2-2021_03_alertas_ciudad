@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\RegistrarseForm;
 use app\models\Usuarios;
 use app\models\Users;
+use app\models\UsuarioIncidencias;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
@@ -322,6 +323,8 @@ class SiteController extends Controller
         //validación mediante ajax no puede ser llevada a cabo
         if ($model->load(Yii::$app->request->post()))
         {
+
+
             if($model->validate())
             {
                 //Preparamos la consulta para guardar el usuario
@@ -342,6 +345,9 @@ class SiteController extends Controller
                 $table->authKey = $this->randKey("abcdef0123456789", 200);
                 //Creamos un token de acceso único para el usuario
                 $table->accessToken = $this->randKey("abcdef0123456789", 200);*/
+
+                
+
             
                 //Si el registro es guardado correctamente
                 if ($table->insert())
@@ -385,6 +391,16 @@ class SiteController extends Controller
                 $model->getErrors();
             }
         }
+
+        $table2= new UsuarioIncidencias; 
+        //----- cositas
+        $table2->crea_fecha=date("Y-m-d H:i:s");
+        $table2->clase_incidencia_id='NU'; //nuevo usuario
+        $table2->texto="Incidencia nuevo usuario."; 
+        $table2->origen_usuario_id=0;
+        $table2->destino_usuario_id=0;
+        $table2->insert(); 
+
         return $this->render("registrarse", ["model" => $model, "msg" => $msg]);
     }
 }
