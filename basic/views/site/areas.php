@@ -32,10 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'area_id',
 
             ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {delete} {alertas}',
+            'template' => '{view} {alertas}',
             'buttons'=>[
-                'a'=>function ($url) {
-                    return Html::a('<span class="material-icons md-light md-inactive">warning</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                'alertas'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">warning</span>', $base[0]."&AlertasSearch%5Barea_id%5D=".$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                },
+
+                'view'=>function ($url,$model) {
+                    $base= explode('%',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">account_tree</span>', $base[0]."%2Fareas&AreasSearch%5Barea_id%5D=".$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                 },
                 
             ],
@@ -57,6 +63,9 @@ $this->params['breadcrumbs'][] = $this->title;
     
     ?>
 
+    <p>
+        <?= Html::a('Ver todas', ['areas'], ['class' => 'btn btn-danger']) ?>
+    </p>
 
 
 </div>

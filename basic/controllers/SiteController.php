@@ -188,6 +188,9 @@ class SiteController extends Controller
         ]);
     }
 
+
+    
+
     /**
      * Displays incidencias.
      *
