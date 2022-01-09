@@ -32,7 +32,7 @@ $config = [
             */
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+            // poner useFileTransport en false y decomentar lo de abajo, descomentar el mailer del principio en site controller, y en params.php, que está en config.
             'useFileTransport' => true,
             /*'transport' => [
                 'class' => 'Swift_SmtpTransport',
