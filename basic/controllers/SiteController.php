@@ -22,6 +22,9 @@ use yii\web\NotFoundHttpException;
 use app\models\AlertasSearch;
 use app\models\Alertas;
 
+use app\models\AlertaComentariosSearch;
+use app\models\AlertaComentarios;
+
 use app\models\Areas;
 use app\models\AreasSearch;
 
@@ -112,6 +115,23 @@ class SiteController extends Controller
         ]);
     }
 
+     public function actionCrearcomentario()
+    {
+        $model = new AlertaComentarios();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('crearcomentario', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Logout action.
      *
@@ -149,7 +169,17 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+
         return $this->render('about');
+    }
+
+    public function actionEstado($id)
+    {
+         return $this->render('estado', [
+            'model' => $this->findModel($id),
+        ]);
+            
+        
     }
 
     /**
@@ -168,6 +198,21 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             
         ]);
+    }
+
+    public function actionComentarios()
+    {
+          $searchModel = new AlertaComentariosSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('comentarios', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
+            
+       
     }
 
     /**
