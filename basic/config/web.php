@@ -33,15 +33,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // poner useFileTransport en false y decomentar lo de abajo, descomentar el mailer del principio en site controller, y en params.php, que está en config.
-            'useFileTransport' => true,
-            /*'transport' => [
+            'useFileTransport' => false,
+            'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' => 'deibed9@gmail.com',
-                'password' => '',
+                'username' => 'pruebaweb099@gmail.com',
+                'password' => 'alertasweb099!',
                 'port' => '587',
                 'encryption' => 'tls',
-            ],*/
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 0 : 0,
