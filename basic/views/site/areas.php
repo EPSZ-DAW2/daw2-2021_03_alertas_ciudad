@@ -32,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'area_id',
 
             ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {delete} {create}',
+            'template' => '{view} {update} {delete} {alertas}',
             'buttons'=>[
-                'create'=>function ($url) {
-                    return Html::a('<span class="material-icons md-light md-inactive">add</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                'a'=>function ($url) {
+                    return Html::a('<span class="material-icons md-light md-inactive">warning</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                 },
                 
             ],
