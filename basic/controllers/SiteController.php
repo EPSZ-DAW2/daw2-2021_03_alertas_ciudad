@@ -92,6 +92,11 @@ class SiteController extends Controller
             return $this->goBack();
         }
 
+        /*$model2 = new Usuarios();
+        $model2 = Usuarios::findOne(Yii::$app->user->id);
+        $model2->num_accesos=$model2->num_accesos+1;
+        $model2->insert();*/
+
         $model->password = '';
         return $this->render('login', [
             'model' => $model,
@@ -254,6 +259,46 @@ class SiteController extends Controller
                return $this->redirect(["site/login"]);
            }
        }
+    }
+
+        public function authenticate() //$attribute,$params
+
+    {
+
+        //$this->_identity= new User($this->email,$this->password);
+        /*$model = new Users();
+        $model = Usuarios::findOne(Yii::$app->user->id);
+        $model->num_accesos=$model->num_accesos+1;
+        $model->insert();*/
+        
+                /*
+                if(!$this->_identity->authenticate()) 
+                {
+
+                   $failedCount = Yii::app()->user->hasState('loginFailed') ?  Yii::app()->user->getState('loginFailed') : 0;    
+                   $failedCount++;
+
+                   Yii::app()->user->setState('loginFailed',$failedCount);
+
+                   if($failedCount>5) 
+
+                   {            
+                    $this->addError('password','Incorrect username or password.');
+
+                     //reset for the next 5 attempts
+
+                     //Yii::app()->user->setState('loginFailed',0);    
+
+                    } 
+
+                }
+
+                else
+
+                  if(Yii::app()->user->hasState('loginFailed'))
+
+                      Yii::app()->user->setState('loginFailed',null); //remove from session of login ok  */ 
+
     }
     
     public function actionRegistrarse()
