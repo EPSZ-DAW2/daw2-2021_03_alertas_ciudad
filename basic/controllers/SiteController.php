@@ -13,13 +13,13 @@ use app\models\RegistrarseForm;
 use app\models\Usuarios;
 use app\models\Users;
 use app\models\UsuarioIncidencias;
+use app\models\UsuarioIncidenciasSearch;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
-<<<<<<< HEAD
+
 //use yii\swiftmailer\Mailer;
-=======
 use yii\web\NotFoundHttpException;
 
 
@@ -29,7 +29,7 @@ use app\models\Alertas;
 use app\models\Areas;
 use app\models\AreasSearch;
 
->>>>>>> a14a23de178f829068477413e236cea74d35dbd2
+
 
 class SiteController extends Controller
 {
@@ -213,7 +213,18 @@ class SiteController extends Controller
      */
     public function actionIncidencias()
     {
-        return $this->render('incidencias');
+        $model = new UsuarioIncidenciasSearch();
+        $dataProvider = $model->search($this->request->queryParams);
+
+        if (($model = Usuarios::findOne(Yii::$app->user->id)) !== null) {
+            return $this->render("incidencias", ["searchModel" => $model,
+            'dataProvider' => $dataProvider,]);
+        }
+
+        return false;
+       
+       
+        //return $this->render('incidencias');
     }
 
     /**

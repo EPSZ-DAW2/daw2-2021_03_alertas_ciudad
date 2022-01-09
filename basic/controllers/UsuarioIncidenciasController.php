@@ -83,6 +83,25 @@ class UsuarioIncidenciasController extends Controller
         ]);
     }
 
+    //create publico 
+    public function actionCreatepublico()
+    {
+        $model = new UsuarioIncidencias();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+        $model->crea_fecha=date("Y-m-d H:m:s");
+
+        return $this->render('createpublico', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Updates an existing UsuarioIncidencias model.
      * If update is successful, the browser will be redirected to the 'view' page.
