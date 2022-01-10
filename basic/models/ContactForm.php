@@ -51,11 +51,11 @@ class ContactForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo($email)
-                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo([$this->email => $this->name])
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
+                ->setTo($email)  //a quien los envías
+                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])  //desde donde lo envías
+                ->setReplyTo([$this->email => $this->name]) 
+                ->setSubject($this->subject)  //asunto del mensaje
+                ->setTextBody($this->body)  //contenido del mensaje
                 ->send();
 
             return true;

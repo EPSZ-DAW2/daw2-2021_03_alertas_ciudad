@@ -115,6 +115,31 @@ class AlertasController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    public function actionViewPublico($id)//quitar
+    {
+        return $this->render('viewPublico', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+        public function actionEstado($id)//quitar
+    {
+         return $this->render('estado', [
+            'model' => $this->findModel($id),
+        ]);
+            
+        
+    }
+
+    
+
+
+
+
+
+
     /**
      * Finds the Alertas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -130,4 +155,7 @@ class AlertasController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+
 }

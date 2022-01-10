@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Usuarios;
 use app\models\UsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -111,8 +113,10 @@ class UsuariosController extends Controller
     public function actionUpdatepublico($id)
     {
         $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+       
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->password = crypt($model->password, Yii::$app->params["salt"]);
+            $model->save();
             return $this->redirect(['/site/perfil', 'id' => $model->id]);
         }
 

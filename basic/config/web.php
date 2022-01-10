@@ -28,10 +28,20 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
+            /*'class' => 'yii\swiftmailer\Mailer',
+            */
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            // poner useFileTransport en false y decomentar lo de abajo, descomentar el mailer del principio en site controller, y en params.php, que está en config.
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'pruebaweb099@gmail.com',
+                'password' => 'alertasweb099!',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 0 : 0,

@@ -131,10 +131,19 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
+        //$decodificado = \Yii::$app->getSecurity()->decryptByPassword(base64_decode($this->password),\Yii::$app->params["salt"]);
+        //$codificado = base64_encode(\Yii::$app->getSecurity()->encryptByPassword($password, $clavesecreta));
         /* Valida el password */
-        if (crypt($password, $this->password) == $this->password)
+        //if ($this->password == $password/*$decodificado)crypt($password, 'encriptar')*/)
+        if(crypt($password,$this->password)== $this->password)
         {
-        return $password === $password;
+            return $password === $password;
+            //return $this->password === hash("sha1", $password);
         }
     }
+
+    /*public function authenticate($attribute,$params)
+    {
+
+    }*/
 }

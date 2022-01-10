@@ -3,27 +3,32 @@
 namespace app\controllers;
 
 use Yii;
+use yii\data\SqlDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrarseForm;
 use app\models\Usuarios;
 use app\models\Users;
+use app\models\UsuarioIncidencias;
+use app\models\UsuarioIncidenciasSearch;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\web\NotFoundHttpException;
-
-
+use yii\swiftmailer\Mailer;
 use app\models\AlertasSearch;
+use app\models\AlertasPortadaSearch;
 use app\models\Alertas;
-
+use app\models\AlertaComentariosSearch;
+use app\models\AlertaComentarios;
 use app\models\Areas;
 use app\models\AreasSearch;
+
+use yii\data\SqlDataProvider;
 
 
 class SiteController extends Controller
@@ -80,7 +85,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new AlertasPortadaSearch();
+        /*$count = Yii::$app->db->createCommand
+        ('SELECT COUNT(*) FROM alertas ', [])->queryScalar();
+        $dataProvider = new SqlDataProvider([
+            'sql' => 'SELECT * FROM alertas ORDER BY crea_fecha LIMIT 20 ',
+            'params' => [],
+            'totalCount' => $count,
+            'pagination' => false,
+        ]);*/
+        
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        //$dataProvider->query->orderBy =  orderBy('fecha_inicio ASC');
+        //$dataProvider->query->limit = 2;
+        //$dataProvider->query= $dataProvider->query->from('alertas')->orderBy('emp_first_name ASC, emp_salary DESC')->all();
+        return $this->render('index',
+        [   'searchModel'      => $searchModel,
+            'dataProvider'      => $dataProvider,
+
+        ]);
+                
     }
 
     /**
@@ -90,6 +114,10 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        //$db = new yii\db\Connection;
+        //$num_intentos = $db->createCommand('SELECT * FROM configuraciones WHERE variable=num_intentos_usuario')
+         //  ->queryOne();
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -99,18 +127,41 @@ class SiteController extends Controller
             return $this->goBack();
         }
 
+        /*$model2 = new Usuarios();
+        $model2 = Usuarios::findOne(Yii::$app->user->id);
+        $model2->num_accesos=$model2->num_accesos+1;
+        $model2->insert();*/
+
         $model->password = '';
         return $this->render('login', [
             'model' => $model,
+            //'intentos' => $num_intentos,
         ]);
     }
 
-    public function actionView($id)
+    /*public function actionView($id)//quitar
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    }*/
+
+    /*public function actionCrearcomentario()//quitarcomentaria
+    {
+        $model = new AlertaComentarios();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('crearcomentario', [
+            'model' => $model,
+        ]);
+    }*/
 
     /**
      * Logout action.
@@ -149,8 +200,18 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+
         return $this->render('about');
     }
+
+    /*public function actionEstado($id)//quitar
+    {
+         return $this->render('estado', [
+            'model' => $this->findModel($id),
+        ]);
+            
+        
+    }*/
 
     /**
      * Displays alertas.
@@ -168,6 +229,21 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             
         ]);
+    }
+
+    public function actionComentarios()
+    {
+          $searchModel = new AlertaComentariosSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+    
+
+        return $this->render('comentarios', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            
+        ]);
+            
+       
     }
 
     /**
@@ -198,7 +274,34 @@ class SiteController extends Controller
      */
     public function actionIncidencias()
     {
-        return $this->render('incidencias');
+        /*$model = new UsuarioIncidenciasSearch();
+        $dataProvider = $model->search($this->request->queryParams);
+
+        if (($model = Usuarios::findOne(Yii::$app->user->id)) !== null) {
+            return $this->render("incidencias", ["searchModel" => $model,
+            'dataProvider' => $dataProvider,]);
+        }
+
+        return false;
+       
+       
+        //return $this->render('incidencias');*/
+
+        $searchModel = new UsuarioIncidenciasSearch();
+        $count = Yii::$app->db->createCommand
+        ('SELECT COUNT(*) FROM usuario_incidencias', [])->queryScalar();
+        $dataProvider = new SqlDataProvider([
+            'sql' => 'SELECT * FROM usuario_incidencias WHERE origen_usuario_id = :origen OR destino_usuario_id = :destino',
+            'params' => [':origen' => Yii::$app->user->id, ':destino' => Yii::$app->user->id],
+            'totalCount' => $count,
+        ]);
+
+
+        return $this->render('incidencias',
+        [   'searchModel'      => $searchModel,
+            'dataProvider'      => $dataProvider,
+
+        ]);
     }
 
     /**
@@ -242,7 +345,7 @@ class SiteController extends Controller
            return $key;
        }
      
-    public function actionConfirm()
+    public function actionConfirm() //Confirmar correo
     {
        $table = new Users;
        if (Yii::$app->request->get())
@@ -257,14 +360,14 @@ class SiteController extends Controller
                //Realizamos la consulta para obtener el registro
                $model = $table
                ->find()
-               ->where("id=:id", [":id" => $id])
-               ->andWhere("authKey=:authKey", [":authKey" => $authKey]);
+               ->where("id=:id", [":id" => $id]);
+               //->andWhere("authKey=:authKey", [":authKey" => $authKey]);
     
                //Si el registro existe
                if ($model->count() == 1)
                {
                    $activar = Users::findOne($id);
-                   $activar->activate = 1;
+                   $activar->confirmado = 1;
                    if ($activar->update())
                    {
                        echo "Enhorabuena registro llevado a cabo correctamente, redireccionando ...";
@@ -286,6 +389,46 @@ class SiteController extends Controller
                return $this->redirect(["site/login"]);
            }
        }
+    }
+
+        public function authenticate() //$attribute,$params
+
+    {
+
+        //$this->_identity= new User($this->email,$this->password);
+        /*$model = new Users();
+        $model = Usuarios::findOne(Yii::$app->user->id);
+        $model->num_accesos=$model->num_accesos+1;
+        $model->insert();*/
+        
+                /*
+                if(!$this->_identity->authenticate()) 
+                {
+
+                   $failedCount = Yii::app()->user->hasState('loginFailed') ?  Yii::app()->user->getState('loginFailed') : 0;    
+                   $failedCount++;
+
+                   Yii::app()->user->setState('loginFailed',$failedCount);
+
+                   if($failedCount>5) 
+
+                   {            
+                    $this->addError('password','Incorrect username or password.');
+
+                     //reset for the next 5 attempts
+
+                     //Yii::app()->user->setState('loginFailed',0);    
+
+                    } 
+
+                }
+
+                else
+
+                  if(Yii::app()->user->hasState('loginFailed'))
+
+                      Yii::app()->user->setState('loginFailed',null); //remove from session of login ok  */ 
+
     }
     
     public function actionRegistrarse()
@@ -309,6 +452,8 @@ class SiteController extends Controller
         //validación mediante ajax no puede ser llevada a cabo
         if ($model->load(Yii::$app->request->post()))
         {
+
+
             if($model->validate())
             {
                 //Preparamos la consulta para guardar el usuario
@@ -321,12 +466,17 @@ class SiteController extends Controller
                 $table->fecha_registro = date("Y-m-d H:i:s");
                 $table->confirmado = 0;
                 //Encriptamos el password
+                //???? $table->password = hash("sha1", $_POST['Usuarios']['password']);
+                //$table->password = $model->password;//crypt($table->password, 'encriptar');
                 $table->password = crypt($model->password, Yii::$app->params["salt"]);
                 /*//Creamos una cookie para autenticar al usuario cuando decida recordar la sesión, esta misma
                 //clave será utilizada para activar el usuario
                 $table->authKey = $this->randKey("abcdef0123456789", 200);
                 //Creamos un token de acceso único para el usuario
                 $table->accessToken = $this->randKey("abcdef0123456789", 200);*/
+
+                
+
             
                 //Si el registro es guardado correctamente
                 if ($table->insert())
@@ -340,12 +490,12 @@ class SiteController extends Controller
             
                     $subject = "Confirmar registro";
                     $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-                    $body .= "<a href='http://yii.local/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
+                    $body .= "<a href='http://localhost/gitBruno/daw2-2021_03_alertas_ciudad/basic/web/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
             
                     //Enviamos el correo
                     Yii::$app->mailer->compose()
                     ->setTo($user->email)
-                    ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
+                    ->setFrom('pruebaweb099@gmail.com')
                     ->setSubject($subject)
                     ->setHtmlBody($body)
                     ->send();
@@ -370,6 +520,16 @@ class SiteController extends Controller
                 $model->getErrors();
             }
         }
+
+        $table2= new UsuarioIncidencias; 
+        //----- cositas
+        $table2->crea_fecha=date("Y-m-d H:i:s");
+        $table2->clase_incidencia_id='NU'; //nuevo usuario
+        $table2->texto="Incidencia nuevo usuario."; 
+        $table2->origen_usuario_id=0;
+        $table2->destino_usuario_id=0;
+        $table2->insert(); 
+
         return $this->render("registrarse", ["model" => $model, "msg" => $msg]);
     }
 

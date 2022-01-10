@@ -6,6 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Alertas */
 
+echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">';
+
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Alertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,13 +38,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'duracion_estimada',
             'direccion:ntext',
             'notas_lugar:ntext',
-            'area_id',
+            ['attribute' => 'area_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=areas%2Fview&id='.$model->area_id.'">'.$model->area_id.'</a>';}],
+
             'detalles:ntext',
             'notas:ntext',
             'url:ntext',
-            'imagen_id',
+            ['attribute' => 'imagen_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=alerta-imagenes%2Fview&id='.$model->imagen_id.'">'.$model->imagen_id.'</a>';}],
+
             'imagen_revisada',
-            'categoria_id',
+            ['attribute' => 'categoria_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=categorias%2Fview&id='.$model->categoria_id.'">'.$model->categoria_id.'</a>';}],
+
             'activada',
             'visible',
             'terminada',
@@ -54,11 +65,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'bloqueo_usuario_id',
             'bloqueo_fecha',
             'bloqueo_notas:ntext',
-            'crea_usuario_id',
+            ['attribute' => 'crea_usuario_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=usuarios%2Fview&id='.$model->crea_usuario_id.'">'.$model->crea_usuario_id.'</a>';}],
+
             'crea_fecha',
-            'modi_usuario_id',
+            ['attribute' => 'modi_usuario_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=usuarios%2Fview&id='.$model->modi_usuario_id.'">'.$model->modi_usuario_id.'</a>';}],
+
             'modi_fecha',
             'notas_admin:ntext',
+
+            [ 'label' => 'comentarios',
+            'format' => 'raw',
+            'value'=>function ($model) {
+                    return Html::a('<span class="material-icons md-light md-inactive">chat</span>', 'index.php?AlertaComentariosSearch[alerta_id]='.$model->id.'&r=alerta-comentarios%2Findex',['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                }
+            ],
         ],
     ]) ?>
 
