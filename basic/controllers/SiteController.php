@@ -28,6 +28,7 @@ use app\models\Alertas;
 use app\models\Areas;
 use app\models\AreasSearch;
 
+use yii\data\SqlDataProvider;
 
 
 class SiteController extends Controller
@@ -212,7 +213,7 @@ class SiteController extends Controller
      */
     public function actionIncidencias()
     {
-        $model = new UsuarioIncidenciasSearch();
+        /*$model = new UsuarioIncidenciasSearch();
         $dataProvider = $model->search($this->request->queryParams);
 
         if (($model = Usuarios::findOne(Yii::$app->user->id)) !== null) {
@@ -223,7 +224,23 @@ class SiteController extends Controller
         return false;
        
        
-        //return $this->render('incidencias');
+        //return $this->render('incidencias');*/
+
+        $searchModel = new UsuarioIncidenciasSearch();
+        $count = Yii::$app->db->createCommand
+        ('SELECT COUNT(*) FROM usuario_incidencias', [])->queryScalar();
+        $dataProvider = new SqlDataProvider([
+            'sql' => 'SELECT * FROM usuario_incidencias WHERE origen_usuario_id = :origen OR destino_usuario_id = :destino',
+            'params' => [':origen' => Yii::$app->user->id, ':destino' => Yii::$app->user->id],
+            'totalCount' => $count,
+        ]);
+
+
+        return $this->render('incidencias',
+        [   'searchModel'      => $searchModel,
+            'dataProvider'      => $dataProvider,
+
+        ]);
     }
 
     /**
