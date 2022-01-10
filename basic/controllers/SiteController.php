@@ -28,7 +28,7 @@ use app\models\AlertaComentarios;
 use app\models\Areas;
 use app\models\AreasSearch;
 
-use yii\data\SqlDataProvider;
+//use yii\data\SqlDataProvider;
 
 
 class SiteController extends Controller
