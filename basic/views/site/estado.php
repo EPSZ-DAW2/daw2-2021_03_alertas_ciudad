@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Alertas */
 
-$this->title = $model->titulo;
+$this->title = 'Estado de la alarma';
 $this->params['breadcrumbs'][] = ['label' => 'Alertas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -17,28 +17,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 
-        <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
+        
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'titulo:ntext',
             'descripcion:ntext',
             'fecha_inicio',
-            'duracion_estimada',
-            'direccion:ntext',
-            'notas_lugar:ntext',
-            'area_id',
-            'detalles:ntext',
-            'notas:ntext',
-            'url:ntext',
-            'imagen_id',
-            'imagen_revisada',
-            /*'categoria_id',
+            //'duracion_estimada',
+            //'direccion:ntext',
+            //'notas_lugar:ntext',
+            //'area_id',
+            //'detalles:ntext',
+            //'notas:ntext',
+            //'url:ntext',
+            //'imagen_id',
+            //'imagen_revisada',
+            //'categoria_id',
             'activada',
-            'visible',
+            /*'visible',
             'terminada',
             'fecha_terminacion',
             'notas_terminacion:ntext',
@@ -55,5 +55,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'notas_admin:ntext',*/
         ],
     ]) ?>
+
+    <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Denunciar', ['alertas'], ['class' => 'btn btn-primary']) ?>
+
 
 </div>
