@@ -1,5 +1,8 @@
 <?php
 
+use yii\helpers\Html;
+use yii\grid\GridView;
+
 /* @var $this yii\web\View */
 $this->title = 'My Yii Application';
 ?>
@@ -11,4 +14,9 @@ $this->title = 'My Yii Application';
         registrados o dados de alta en el sistema.<hr>
         
     </div>
+
+    <?php
+        var_dump($model);
+
+    ?>
 </div>

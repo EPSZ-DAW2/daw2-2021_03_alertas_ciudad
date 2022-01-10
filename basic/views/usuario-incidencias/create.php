@@ -3,20 +3,18 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Areas */
+/* @var $model app\models\UsuarioIncidencias */
 
-$this->title = 'Create Areas';
-$this->params['breadcrumbs'][] = ['label' => 'Areas', 'url' => ['index']];
+$this->title = 'Create Usuario Incidencias';
+$this->params['breadcrumbs'][] = ['label' => 'Usuario Incidencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="areas-create">
+<div class="usuario-incidencias-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'area_id'=>$area_id,
-        'padre'=>$padre,
     ]) ?>
 
 </div>

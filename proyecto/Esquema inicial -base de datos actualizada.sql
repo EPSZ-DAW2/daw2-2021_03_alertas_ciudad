@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-01-2022 a las 00:30:41
+-- Tiempo de generación: 06-01-2022 a las 21:56:28
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `daw2_alertas`
 --
+CREATE DATABASE IF NOT EXISTS `daw2_alertas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `daw2_alertas`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `alertas`
 --
 
+DROP TABLE IF EXISTS `alertas`;
 CREATE TABLE `alertas` (
   `id` int(12) UNSIGNED NOT NULL,
   `titulo` text NOT NULL COMMENT 'Titulo corto para la alerta.',
@@ -75,6 +78,7 @@ INSERT INTO `alertas` (`id`, `titulo`, `descripcion`, `fecha_inicio`, `duracion_
 -- Estructura de tabla para la tabla `alerta_comentarios`
 --
 
+DROP TABLE IF EXISTS `alerta_comentarios`;
 CREATE TABLE `alerta_comentarios` (
   `id` int(12) UNSIGNED NOT NULL,
   `alerta_id` int(12) UNSIGNED NOT NULL COMMENT 'Alerta relacionada',
@@ -108,11 +112,21 @@ INSERT INTO `alerta_comentarios` (`id`, `alerta_id`, `crea_usuario_id`, `crea_fe
 -- Estructura de tabla para la tabla `alerta_etiquetas`
 --
 
+DROP TABLE IF EXISTS `alerta_etiquetas`;
 CREATE TABLE `alerta_etiquetas` (
   `id` int(12) UNSIGNED NOT NULL,
   `alerta_id` int(12) UNSIGNED NOT NULL COMMENT 'Alerta relacionada',
   `etiqueta_id` int(12) UNSIGNED NOT NULL COMMENT 'Etiqueta relacionada.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `alerta_etiquetas`
+--
+
+INSERT INTO `alerta_etiquetas` (`id`, `alerta_id`, `etiqueta_id`) VALUES
+(1, 4859720, 2514759),
+(2, 8952410, 9654712),
+(3, 8974521, 231546);
 
 -- --------------------------------------------------------
 
@@ -120,6 +134,7 @@ CREATE TABLE `alerta_etiquetas` (
 -- Estructura de tabla para la tabla `alerta_imagenes`
 --
 
+DROP TABLE IF EXISTS `alerta_imagenes`;
 CREATE TABLE `alerta_imagenes` (
   `id` int(12) UNSIGNED NOT NULL,
   `alerta_id` int(12) UNSIGNED NOT NULL COMMENT 'Alerta relacionada',
@@ -133,12 +148,21 @@ CREATE TABLE `alerta_imagenes` (
   `notas_admin` text DEFAULT NULL COMMENT 'Notas adicionales para los administradores sobre la alerta o NULL si no hay.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `alerta_imagenes`
+--
+
+INSERT INTO `alerta_imagenes` (`id`, `alerta_id`, `orden`, `imagen_id`, `imagen_revisada`, `crea_usuario_id`, `crea_fecha`, `modi_usuario_id`, `modi_fecha`, `notas_admin`) VALUES
+(1, 4859720, 0, 'https://www.google.com/url?sa=i&url=http', 1, 0, '2022-01-06 21:50:09', 0, '2022-01-06 21:50:09', 'No hay notas'),
+(2, 8952410, 0, 'https://www.google.com/url?sa=i&url=http', 0, 0, '2022-01-06 21:50:09', 0, '2022-01-06 21:50:09', 'No hay notas');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `areas`
 --
 
+DROP TABLE IF EXISTS `areas`;
 CREATE TABLE `areas` (
   `id` int(12) UNSIGNED NOT NULL,
   `clase_area_id` tinyint(2) NOT NULL COMMENT 'Código de clase de area: 0=Planeta, 1=Continente, 2=Pais, 3=Estado, 4=Region, 5=Provincia, 6=Municipio, 7=Localidad, 8=Barrio, 9=Zona, ...',
@@ -152,6 +176,7 @@ CREATE TABLE `areas` (
 -- Estructura de tabla para la tabla `categorias`
 --
 
+DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE `categorias` (
   `id` int(12) UNSIGNED NOT NULL,
   `nombre` varchar(25) DEFAULT NULL,
@@ -192,6 +217,7 @@ INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `categoria_id`) VALUES
 -- Estructura de tabla para la tabla `categorias_etiquetas`
 --
 
+DROP TABLE IF EXISTS `categorias_etiquetas`;
 CREATE TABLE `categorias_etiquetas` (
   `id` int(12) UNSIGNED NOT NULL,
   `categoria_id` int(12) UNSIGNED NOT NULL COMMENT 'Clasificacion relacionada, para saber a que grupo pertenece.',
@@ -204,6 +230,7 @@ CREATE TABLE `categorias_etiquetas` (
 -- Estructura de tabla para la tabla `configuraciones`
 --
 
+DROP TABLE IF EXISTS `configuraciones`;
 CREATE TABLE `configuraciones` (
   `variable` varchar(40) NOT NULL,
   `valor` text DEFAULT NULL
@@ -228,10 +255,19 @@ INSERT INTO `configuraciones` (`variable`, `valor`) VALUES
 -- Estructura de tabla para la tabla `etiquetas`
 --
 
+DROP TABLE IF EXISTS `etiquetas`;
 CREATE TABLE `etiquetas` (
   `id` int(12) UNSIGNED NOT NULL,
   `nombre` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `etiquetas`
+--
+
+INSERT INTO `etiquetas` (`id`, `nombre`) VALUES
+(1, 'atraco'),
+(2, 'atasco');
 
 -- --------------------------------------------------------
 
@@ -239,6 +275,7 @@ CREATE TABLE `etiquetas` (
 -- Estructura de tabla para la tabla `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
   `id` int(12) UNSIGNED NOT NULL,
   `crea_fecha` datetime NOT NULL COMMENT 'Fecha y Hora del mensaje de LOG.',
@@ -253,6 +290,7 @@ CREATE TABLE `logs` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(12) UNSIGNED NOT NULL,
   `email` varchar(255) NOT NULL COMMENT 'Correo Electronico y "login" del usuario.',
@@ -290,6 +328,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nick`, `nombre`, `apellidos`
 -- Estructura de tabla para la tabla `usuarios_area_moderacion`
 --
 
+DROP TABLE IF EXISTS `usuarios_area_moderacion`;
 CREATE TABLE `usuarios_area_moderacion` (
   `id` int(12) UNSIGNED NOT NULL,
   `usuario_id` int(12) UNSIGNED NOT NULL COMMENT 'Usuario relacionado con un Area para su moderación.',
@@ -302,6 +341,7 @@ CREATE TABLE `usuarios_area_moderacion` (
 -- Estructura de tabla para la tabla `usuario_incidencias`
 --
 
+DROP TABLE IF EXISTS `usuario_incidencias`;
 CREATE TABLE `usuario_incidencias` (
   `id` int(12) UNSIGNED NOT NULL,
   `crea_fecha` datetime NOT NULL COMMENT 'Fecha y Hora de creación de la incidencia.',
@@ -420,13 +460,13 @@ ALTER TABLE `alerta_comentarios`
 -- AUTO_INCREMENT de la tabla `alerta_etiquetas`
 --
 ALTER TABLE `alerta_etiquetas`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `alerta_imagenes`
 --
 ALTER TABLE `alerta_imagenes`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `areas`
@@ -450,7 +490,7 @@ ALTER TABLE `categorias_etiquetas`
 -- AUTO_INCREMENT de la tabla `etiquetas`
 --
 ALTER TABLE `etiquetas`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `logs`

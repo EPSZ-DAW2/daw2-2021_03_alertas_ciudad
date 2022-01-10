@@ -35,16 +35,20 @@ class AreasController extends Controller
      * Lists all Areas models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($error="")
     {
         $searchModel = new AreasSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+    
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'error'=>$error,
         ]);
     }
+
+   
 
     /**
      * Displays a single Areas model.
@@ -64,9 +68,10 @@ class AreasController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Areas();
+        $padre = $id?$this->findModel($id)->nombre: "No tiene padre";
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -78,6 +83,8 @@ class AreasController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'area_id'=>$id,
+            'padre'=>$padre,
         ]);
     }
 
@@ -110,9 +117,21 @@ class AreasController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+       // 
 
-        return $this->redirect(['index']);
+        $resultado = Areas::findAll(['area_id'=>$id]);
+
+        if($resultado&&count($resultado)>0){
+            return $this->redirect(['index',
+            'error'=>'1010']);
+        }else{
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        }
+
+        
+
+       
     }
 
     /**
