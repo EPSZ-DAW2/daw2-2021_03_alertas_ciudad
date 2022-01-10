@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\UsuarioIncidencias;
 use app\models\UsuarioIncidenciasSearch;
 use yii\web\Controller;
@@ -103,6 +104,7 @@ class UsuarioIncidenciasController extends Controller
             $model->loadDefaultValues();
         }
         $model->crea_fecha=date("Y-m-d H:m:s");
+        $model->origen_usuario_id=Yii::$app->user->id;
 
         return $this->render('createpublico', [
             'model' => $model,
@@ -181,6 +183,47 @@ class UsuarioIncidenciasController extends Controller
         ]);
         
     }
+
+
+     /*
+      Acción de responder a una incidencia de forma pública
+        se responderá con otra incidencia en la que no se puedan cambiar ni origen ni destino
+        dependiendo de a quien respondas
+    */
+
+    public function actionAnswerpublico($id)
+    {
+        $modelbase = $this->findModel($id);
+        $model = new UsuarioIncidencias();
+    /*
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['create', 'id' => $model->id]);
+        }
+    */
+        //Yii::$app->user->id -> sacamos el id de la sesión 
+        
+
+        //$model->id=null; 
+        $model->crea_fecha=date("Y-m-d H:m:s");
+        $model->texto=null;
+        $model->clase_incidencia_id="R";  //cuando sea una respuesta, que el tipo sea siempre R
+        $aux=$modelbase->origen_usuario_id;  //guardamos el valor en auxiliar
+        $model->origen_usuario_id=$modelbase->destino_usuario_id;
+        //$model->alerta_id=$modelbase->alerta_id; 
+        //$model->comentario_id=$modelbase->comentario_id; 
+         // el base tiene los datos del modelo que estamos respondiendo y el model no tiene ninguno, pasamos solo lo que queremos
+        $model->destino_usuario_id=$aux;
+        
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['viewpublico', 'id' => $model->id]);
+        }
+        
+        return $this->render('createpublico', [
+            'model' => $model,
+        ]);
+        
+    }
+
 
     /**
      * Finds the UsuarioIncidencias model based on its primary key value.
