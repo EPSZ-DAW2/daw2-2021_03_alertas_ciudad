@@ -32,7 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre',
             'descripcion:ntext',
-            'categoria_id',
+             ['attribute' => 'categoria_id',
+            'format' => 'raw',
+            'value' => function ($model){return '<a href="index.php?r=categorias%2Fview&id='.$model->categoria_id.'">'.$model->categoria_id.'</a>';}],
         ],
     ]) ?>
 

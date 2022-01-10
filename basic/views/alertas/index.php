@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">';
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AlertasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -35,12 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'duracion_estimada',
             'direccion:ntext',
             //'notas_lugar:ntext',
-            ['class' => 'yii\grid\DataColumn','attribute' => 'area_id','content'=>function ($model){return '<a href="index.php?AreasSearch[id]='.$model->area_id.'&r=areas%2Findex">'.$model->area_id.'</a>';}],
+            ['class' => 'yii\grid\DataColumn','attribute' => 'area_id','content'=>function ($model){return '<a href="index.php?r=areas%2Fview&id='.$model->area_id.'">'.$model->area_id.'</a>';}],
 
             //'detalles:ntext',
             //'notas:ntext',
             //'url:ntext',
-            'imagen_id',//cambiar
+            ['class' => 'yii\grid\DataColumn','attribute' => 'imagen_id','content'=>function ($model){return '<a href="index.php?r=alerta-imagenes%2Fview&id='.$model->imagen_id.'">'.$model->imagen_id.'</a>';}],
             //'imagen_revisada',
             ['class' => 'yii\grid\DataColumn','attribute' => 'categoria_id','content'=>function ($model){return '<a href="index.php?r=categorias%2Fview&id='.$model->categoria_id.'">'.$model->categoria_id.'</a>';}],
             //'activada',
@@ -61,6 +63,21 @@ $this->params['breadcrumbs'][] = $this->title;
             //'notas_admin:ntext',
             //etiquetas
             //comentarios
+
+            ['class' => 'yii\grid\ActionColumn',
+            'header' => 'Comentarios',
+            'template' => '{comentarios}',
+            'buttons'=>[
+                'comentarios'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">chat</span>', $url,['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                }],
+                'urlCreator'=> function ($action, $model, $key, $index) {
+                    if ($action === 'comentarios') {
+                        return 'index.php?AlertaComentariosSearch[alerta_id]='.$model->id.'&r=alerta-comentarios%2Findex';
+                    }
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
 

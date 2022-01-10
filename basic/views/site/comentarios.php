@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'bloqueo_fecha',
             //'bloqueo_notas:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn','template' => '{view}'],
         ],
     ]); ?>
 
