@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Alertas */
-
+//prueva
 echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">';
 
 $this->title = $model->id;
