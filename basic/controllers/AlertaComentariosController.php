@@ -115,13 +115,14 @@ class AlertaComentariosController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionCrearcomentario()//quitarcomentaria
+    public function actionCrearcomentario($alerta_id)//quitarcomentaria
     {
         $model = new AlertaComentarios();
+        $model->alerta_id=$alerta_id;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['../alerta-comentarios/viewPublico', 'id' => $model->id]);
+                return $this->redirect(['site/comentarios', 'AlertaComentariosSearch[alerta_id]='=>$model->alerta_id]);//comrobar
             }
         } else {
             $model->loadDefaultValues();
@@ -131,6 +132,49 @@ class AlertaComentariosController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionRespondercomentario($alerta_id,$id)//quitarcomentaria
+    {
+        $model = new AlertaComentarios();
+        $model->alerta_id=$alerta_id;
+        $model->comentario_id=$id;
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['site/comentarios', 'AlertaComentariosSearch[alerta_id]='=>$model->alerta_id]);//comrobar
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('crearcomentario', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionVistac($id)
+    {
+         return $this->render('vistac', [
+            'model' => $this->findModel($id),
+        ]);
+
+
+    }
+
+    public function actionDenuncia($id)
+    {
+        //$searchModel = new AlertasSearch();
+        //$dataProvider = $searchModel->search($this->request->queryParams);
+
+       $model = $this->findModel($id);
+       $model->num_denuncias = $model->num_denuncias + 1;
+       $model->save();
+
+        return $this->redirect(['site/comentarios', 'AlertaComentariosSearch[alerta_id]='=>$model->alerta_id]);//comrobar
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
+    }
+
 
     /**
      * Finds the AlertaComentarios model based on its primary key value.

@@ -116,9 +116,9 @@ class AlertasController extends Controller
     }
 
 
-    public function actionViewPublico($id)//quitar
+    public function actionViewpublico($id)//quitar
     {
-        return $this->render('viewPublico', [
+        return $this->render('viewpublico', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -134,7 +134,21 @@ class AlertasController extends Controller
     }
 
     
+    public function actionDenuncia($id)
+    {
+        //$searchModel = new AlertasSearch();
+        //$dataProvider = $searchModel->search($this->request->queryParams);
 
+       $model = $this->findModel($id);
+       $model->num_denuncias = $model->num_denuncias + 1;
+       $model->save();
+
+       return $this->render('estado', [
+            'model' => $this->findModel($id),
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
+        ]);
+    }
 
 
 

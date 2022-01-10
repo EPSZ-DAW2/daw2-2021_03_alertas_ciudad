@@ -33,8 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'template' => '{view}',
             'buttons'=>[
 
-                'create'=>function ($url) {
-                    return Html::a('<span class="material-icons md-light md-inactive">add</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                'view'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">add</span>', 'index.php?r=alertas%2Fviewpublico&id='.$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                 },
 
                 
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'buttons'=>[
                 'estado'=>function ($url,$model) {
                     $base= explode('&',$url);
-                    return Html::a('<span class="material-icons md-light md-inactive">radio_button_checked</span>', 'index.php?r=alertas%2Festado&id=4859720', ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                    return Html::a('<span class="material-icons md-light md-inactive">radio_button_checked</span>', 'index.php?r=alertas%2Festado&id='.$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                 }
                 
             ],
@@ -68,21 +69,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ['class' => 'yii\grid\ActionColumn',
             'header' => 'Comentarios',
-            'template' => '{comentarios}',
+            'template' => '{comentarios}{comentar}',
             'buttons'=>[
                 'comentarios'=>function ($url,$model) {
                     $base= explode('&',$url);
-                    return Html::a('<span class="material-icons md-light md-inactive">chat</span>', $url,['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
-                }],
+                    return Html::a('<span class="material-icons md-light md-inactive">chat</span>', $url,['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);},
+            'comentar'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">post_add</span>', $url , ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);}
+            ],
                 'urlCreator'=> function ($action, $model, $key, $index) {
                     if ($action === 'comentarios') {
                         return 'index.php?r=site%2Fcomentarios&AlertaComentariosSearch[alerta_id]='.$model->id;
                     }
-                }
+                    if ($action === 'comentar') {
+                        return 'index.php?r=alerta-comentarios/crearcomentario&alerta_id='.$model->id;}
+                    }
+                
             ],
 
+        ],
+
     ],
-    ]); 
+    ); 
     
     if(isset($error)){
         if($error=='1010'){

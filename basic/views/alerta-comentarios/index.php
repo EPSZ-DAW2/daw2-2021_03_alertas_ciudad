@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\DataColumn','attribute' => 'modi_usuario_id','content'=>function ($model){return '<a href="index.php?r=usuarios%2Fview&id='.$model->modi_usuario_id.'">'.$model->modi_usuario_id.'</a>';}],
             //'modi_fecha',
             //'texto:ntext',
-            'comentario_id',
             ['class' => 'yii\grid\DataColumn','attribute' => 'comentario_id','content'=>function ($model){return '<a href="index.php?r=alerta-comentario%2Fview&id='.$model->comentario_id.'">'.$model->comentario_id.'</a>';}],
             //'cerrado',
             //'num_denuncias',

@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
-    <?= Html::a('Denunciar', ['alertas'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Volver', ['site/alertas'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Denunciar', ['denuncia','id'=>$model->id], ['class' => 'btn btn-danger']) ?>
 
 
 </div>

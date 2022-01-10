@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 
-        <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Volver', ['site/alertas'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([

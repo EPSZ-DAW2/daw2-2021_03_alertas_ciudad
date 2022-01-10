@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use Yii;
-use yii\data\SqlDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -21,7 +20,6 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\swiftmailer\Mailer;
 use app\models\AlertasSearch;
-use app\models\AlertasPortadaSearch;
 use app\models\Alertas;
 use app\models\AlertaComentariosSearch;
 use app\models\AlertaComentarios;
@@ -85,26 +83,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AlertasPortadaSearch();
-        /*$count = Yii::$app->db->createCommand
-        ('SELECT COUNT(*) FROM alertas ', [])->queryScalar();
-        $dataProvider = new SqlDataProvider([
-            'sql' => 'SELECT * FROM alertas ORDER BY crea_fecha LIMIT 20 ',
-            'params' => [],
-            'totalCount' => $count,
-            'pagination' => false,
-        ]);*/
-        
-        $dataProvider = $searchModel->search($this->request->queryParams);
-        //$dataProvider->query->orderBy =  orderBy('fecha_inicio ASC');
-        //$dataProvider->query->limit = 2;
-        //$dataProvider->query= $dataProvider->query->from('alertas')->orderBy('emp_first_name ASC, emp_salary DESC')->all();
-        return $this->render('index',
-        [   'searchModel'      => $searchModel,
-            'dataProvider'      => $dataProvider,
+        $model = new Alertas();
 
+        return $this->render('index', [
+            'model' => $model,
         ]);
-                
     }
 
     /**
@@ -490,7 +473,7 @@ class SiteController extends Controller
             
                     $subject = "Confirmar registro";
                     $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-                    $body .= "<a href='http://localhost/gitBruno/daw2-2021_03_alertas_ciudad/basic/web/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
+                    $body .= "<a href='http://localhost/GIT_Eufen/daw2-2021_03_alertas_ciudad/basic/web/index.php?r=site/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
             
                     //Enviamos el correo
                     Yii::$app->mailer->compose()

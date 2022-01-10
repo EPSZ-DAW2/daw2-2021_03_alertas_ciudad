@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 /* @var $this yii\web\View */
 /* @var $model app\models\AlertaComentarios */
 
-$this->title = 'Create Alerta Comentarios';
+$this->title = 'Publicar Comentario';
 $this->params['breadcrumbs'][] = ['label' => 'Alerta Comentarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
