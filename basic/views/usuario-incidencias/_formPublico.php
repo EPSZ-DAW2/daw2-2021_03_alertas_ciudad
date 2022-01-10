@@ -14,13 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'crea_fecha')->textInput() ?>
 
-    <?= $form->field($model, 'clase_incidencia_id')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'destino_usuario_id')->textInput() ?>
-
-    <?= $form->field($model, 'origen_usuario_id')->textInput() ?>
 
     <!-- El resto del formulario oculto porque es la parte pública  -->
    

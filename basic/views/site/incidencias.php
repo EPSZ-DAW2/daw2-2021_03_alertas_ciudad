@@ -28,19 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'crea_fecha',
-            'clase_incidencia_id',
+            //'clase_incidencia_id',
             'texto:ntext',
-            'destino_usuario_id',
-            'origen_usuario_id',
+            //'destino_usuario_id',
+            //'origen_usuario_id',
             //'alerta_id',
             //'comentario_id',
             //'fecha_lectura',
             //'fecha_borrado',
             //'fecha_aceptado',
 
-            ['class' => 'yii\grid\ActionColumn',
+            /*['class' => 'yii\grid\ActionColumn',
                 'header' => 'Incidencias',
                 'template' => '{incidencias}',
                 'buttons'=>[
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('<span class="material-icons md-light md-inactive">area_chart</span>', $base[0]."&UsuarioIncidenciasSearch%5Barea_id%5D=".$model->area_id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                     },
             ],  //los botones 
-        ],
+        ],*/
      ],
     ]); ?>
 
