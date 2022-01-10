@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Agregar comentario', ['crearcomentario'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Agregar comentario', ['alerta-comentarios/crearcomentario'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Denunciar', ['create'], ['class' => 'btn btn-danger']) ?>
 
     </p>

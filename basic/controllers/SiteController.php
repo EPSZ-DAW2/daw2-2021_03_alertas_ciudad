@@ -122,14 +122,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionView($id)
+    /*public function actionView($id)//quitar
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    }*/
 
-     public function actionCrearcomentario()
+    /*public function actionCrearcomentario()//quitarcomentaria
     {
         $model = new AlertaComentarios();
 
@@ -144,7 +144,7 @@ class SiteController extends Controller
         return $this->render('crearcomentario', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Logout action.
@@ -187,14 +187,14 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionEstado($id)
+    /*public function actionEstado($id)//quitar
     {
          return $this->render('estado', [
             'model' => $this->findModel($id),
         ]);
             
         
-    }
+    }*/
 
     /**
      * Displays alertas.

@@ -115,6 +115,23 @@ class AlertaComentariosController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionCrearcomentario()//quitarcomentaria
+    {
+        $model = new AlertaComentarios();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['../alerta-comentarios/viewPublico', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('crearcomentario', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Finds the AlertaComentarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
