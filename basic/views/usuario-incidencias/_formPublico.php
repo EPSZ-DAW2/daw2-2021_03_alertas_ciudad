@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <!-- El resto del formulario oculto porque es la parte pública  -->
    
+    <?php  echo $form->field($model, 'origen_usuario_id')->hiddenInput(['origen_usuario_id'=> $model->origen_usuario_id])->label(false); ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
