@@ -45,6 +45,7 @@ AppAsset::register($this);
                 ['label' => 'Alertas', 'url' => ['/site/alertas']],
                 ['label' => 'Areas', 'url' => ['/site/areas']],
                 ['label' => 'Incidencias', 'url' => ['/site/incidencias']],
+
                 ['label' => 'About', 'url' => ['/site/about']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'Perfil', 'url' => ['/site/perfil']],
@@ -117,6 +118,7 @@ AppAsset::register($this);
                     ['label' => 'Imagenes', 'url' => ['/alerta-imagenes/index']],
                     ['label' => 'Etiquetas', 'url' => ['/etiquetas/index']],
                     ['label' => 'Areas', 'url' => ['/areas/index']],
+                    ['label' => 'Categorias', 'url' => ['/categorias/index']],
                     ['label' => 'Incidencias', 'url' => ['/incidencias/index']],
                     ['label' => 'Configuraciones', 'url' => ['/configuraciones/index']],
                     ['label' => 'Logs', 'url' => ['/logs/index']],

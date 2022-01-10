@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre',
             'descripcion:ntext',
-            'categoria_id',
+            ['class' => 'yii\grid\DataColumn','attribute' => 'categoria_id','content'=>function ($model){return '<a href="index.php?r=categorias%2Fview&id='.$model->categoria_id.'">'.$model->categoria_id.'</a>';}],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
