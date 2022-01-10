@@ -60,6 +60,13 @@ class UsuarioIncidenciasController extends Controller
         ]);
     }
 
+        public function actionViewpublico($id)
+    {
+        return $this->render('viewpublico', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     /**
      * Creates a new UsuarioIncidencias model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -90,7 +97,7 @@ class UsuarioIncidenciasController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['viewpublico', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
