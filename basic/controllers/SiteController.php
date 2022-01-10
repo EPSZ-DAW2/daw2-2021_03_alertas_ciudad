@@ -30,7 +30,6 @@ use app\models\AreasSearch;
 
 //use yii\data\SqlDataProvider;
 
-
 class SiteController extends Controller
 {
     /**
