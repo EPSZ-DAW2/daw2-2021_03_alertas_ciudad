@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Usuarios;
+use app\models\Areas;
 
 
 /* @var $this yii\web\View */
@@ -37,7 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'     => function($model){return Usuarios::findOne($model->usuario_id)->nick; }
             ],
 
-            'area_id',
+            [
+                'attribute' => 'area_id',
+                'label'=> 'Area',
+                'value'     => function($model){return Areas::findOne($model->area_id)->nombre; }
+            ],
+
+            //'area_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
