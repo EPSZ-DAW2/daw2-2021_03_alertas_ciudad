@@ -1,8 +1,10 @@
 <?php
 
+
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
+use app\models\UsuarioIncidencias;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -25,6 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
         if($model->rol == 'A'){ $model->rol = 'Administrador';}
         if($model->rol == 'M'){ $model->rol = 'Moderador';}
         if($model->rol == 'N'){ $model->rol = 'Usuario';}
+        if(isset($_GET['incidencia']))
+        { 
+            $model2 = new UsuarioIncidencias();
+            $model2->crea_fecha=date("Y-m-d H:m:s");
+            $model2->clase_incidencia_id="B";
+            $model2->texto="Baja de usuario";
+            $model2->destino_usuario_id="0";
+            $model2->origen_usuario_id=Yii::$app->user->id;
+            $model2->insert();
+        } 
+   
     ?>
     <?= DetailView::widget([
         'model' => $model,
@@ -43,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <?= Html::a('Cambiar datos', ['usuarios/updatepublico', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Solicitar baja', ['perfil', 'id' => $model->id, 'incidencia'=>'1'], ['class' => 'btn btn-success']) ?>
 <hr>
 <?php 
 
@@ -56,8 +70,5 @@ if($model->rol == 'Administrador del Sistema')
 
 
 }
-
-
-
 
 ?>

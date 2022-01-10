@@ -16,13 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Areas', ['create','id'=>0], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <p>
-        <?= Html::a('Usuarios Area Moderacion', ['/usuarios-area-moderacion/index'], ['class' => 'btn btn-danger']) ?>
-    </p>
+    
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -32,16 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'clase_area_id',
+          //  'id',
+          //  'clase_area_id',
             'nombre',
-            'area_id',
+           // 'area_id',
 
             ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {delete} {create}',
+            'template' => '{view} {alertas}',
             'buttons'=>[
-                'create'=>function ($url) {
-                    return Html::a('<span class="material-icons md-light md-inactive">add</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                'alertas'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">warning</span>', $base[0]."&AlertasSearch%5Barea_id%5D=".$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+                },
+
+                'view'=>function ($url,$model) {
+                    $base= explode('&',$url);
+                    return Html::a('<span class="material-icons md-light md-inactive">warning</span>', $base[0]."&AlertasSearch%5Barea_id%5D=".$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
                 },
                 
             ],
