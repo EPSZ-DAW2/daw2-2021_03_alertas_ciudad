@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\AlertaComentarios */
 
 $this->title = 'Comentario';
-$this->params['breadcrumbs'][] = ['label' => 'Alerta Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="alerta-comentarios-view">
@@ -20,8 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'alerta_id',
+
             //'crea_usuario_id',
             //'crea_fecha',
             /*'modi_usuario_id',
@@ -30,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'comentario_id',
             'cerrado',
             */'num_denuncias',/*
-            */'fecha_denuncia1',/*
+            */'fecha_denuncia',/*
             'bloqueado',
             'bloqueo_usuario_id',
             'bloqueo_fecha',

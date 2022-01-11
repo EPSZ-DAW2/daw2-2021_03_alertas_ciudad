@@ -6,14 +6,13 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
-
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Registrarse';
 ?>
 
-<p><?= $msg ?></p>
 
-<h1>Register</h1>
+
+<h1><?= Html::encode($this->title) ?></h1>
+<p><?= $msg ?></p>
 <?php $form = ActiveForm::begin([
     'method' => 'post',
  'id' => 'formulario',

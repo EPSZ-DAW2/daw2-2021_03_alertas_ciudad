@@ -35,15 +35,15 @@ GridView::widget([
     'summary' => "",
     'showHeader' => false,
     'columns' => [
-        'id',
        'titulo',
         ['class' => 'yii\grid\ActionColumn',
         'header' => 'Ver ficha ',
         'template' => '{view}',
         'buttons'=>[
 
-            'create'=>function ($url) {
-                return Html::a('<span class="material-icons md-light md-inactive">add</span>', $url, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
+            'view'=>function ($url,$model) {
+                $base= explode('&',$url);
+                return Html::a('<span class="material-icons md-light md-inactive">add</span>', 'index.php?r=alertas%2Fviewpublico&id='.$model->id, ['class' => 'glyphicon glyphicon-plus btn btn-default btn-xs custom_button']);
             },
     
         ],

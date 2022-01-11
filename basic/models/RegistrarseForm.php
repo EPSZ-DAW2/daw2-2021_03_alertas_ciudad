@@ -21,7 +21,7 @@ class RegistrarseForm extends model{
             ['email', 'match', 'pattern' => "/^.{5,80}$/", 'message' => 'Mínimo 5 y máximo 80 caracteres'],
             ['email', 'email', 'message' => 'Formato no válido'],
             ['email', 'email_existe'],
-            ['password', 'match', 'pattern' => "/^.{8,16}$/", 'message' => 'Mínimo 6 y máximo 16 caracteres'],
+            ['password', 'match', 'pattern' => "/^.{6,20}$/", 'message' => 'Mínimo 6 y máximo 20 caracteres'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Los passwords no coinciden'],
         ];
     }

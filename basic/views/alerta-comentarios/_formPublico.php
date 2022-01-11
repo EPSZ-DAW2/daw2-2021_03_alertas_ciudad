@@ -9,8 +9,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'alerta_id')->textInput() ?>
-
+    <?= $form->field($model, 'alerta_id')->hiddenInput(['readonly' => true,]) ?>
     <?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
 
 

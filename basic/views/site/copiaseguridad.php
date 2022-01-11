@@ -1,6 +1,7 @@
 <br>
 <?php
-$db = require __DIR__ . '../../../config/db_orig.php';
+
+$db = require __DIR__ . '../../../config/db_proyecto_03_alertas_ciudad.php';
 
 //Introduzca aquí la información de su base de datos y el nombre del archivo de copia de seguridad.
 $fecha= date("Ymd-His");
@@ -12,7 +13,7 @@ $mysqlExportPath = 'copiaseguridad/'.$mysqlDatabaseName.'_'.$fecha.'.sql';
 
 
 //$command='mysqldump --user='.$mysqlUserName. '--password='.$mysqlPassword. '--host='.$mysqlHostName. ''.$mysqlDatabaseName.' > '.$mysqlExportPath;
-$command="mysqldump -u $mysqlUserName --p $mysqlDatabaseName > $mysqlExportPath";
+$command="mysqldump -u $mysqlUserName --password=$mysqlPassword --p $mysqlDatabaseName > $mysqlExportPath";
 
 system($command,$output);
 echo $command;
@@ -30,3 +31,6 @@ break;
 }
 
 ?>
+
+
+

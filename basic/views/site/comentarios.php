@@ -10,7 +10,6 @@ echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="s
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Comentarios';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alerta-comentarios-index">
 
@@ -87,7 +86,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Volver', ['alertas'], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Agregar comentario', ['alerta-comentarios/crearcomentario'], ['class' => 'btn btn-success']) ?>
 
     </p>
 

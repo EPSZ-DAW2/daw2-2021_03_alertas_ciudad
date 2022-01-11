@@ -10,7 +10,6 @@ echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="s
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Alertas';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="areas-index">
 

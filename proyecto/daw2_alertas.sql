@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-01-2022 a las 21:56:28
+-- Tiempo de generación: 11-01-2022 a las 03:03:31
 -- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,8 +68,8 @@ CREATE TABLE `alertas` (
 --
 
 INSERT INTO `alertas` (`id`, `titulo`, `descripcion`, `fecha_inicio`, `duracion_estimada`, `direccion`, `notas_lugar`, `area_id`, `detalles`, `notas`, `url`, `imagen_id`, `imagen_revisada`, `categoria_id`, `activada`, `visible`, `terminada`, `fecha_terminacion`, `notas_terminacion`, `num_denuncias`, `fecha_denuncia1`, `bloqueada`, `bloqueo_usuario_id`, `bloqueo_fecha`, `bloqueo_notas`, `crea_usuario_id`, `crea_fecha`, `modi_usuario_id`, `modi_fecha`, `notas_admin`) VALUES
-(4859720, 'Atasco', 'Ha habido un atasco ', '2022-01-04 23:10:41', 3, 'avenida manolita', 'Colisión entre dos coches', 7, 'La gente está agresiva', 'Se necesita policía', NULL, 'https://www.google.com/url?sa=i&url=http', 1, 2, 1, 1, 1, '2022-01-04 23:10:41', 'Resstablecer alarma', 2, '2022-01-04 23:10:41', 2, 3, '2022-01-04 23:10:41', NULL, 0, '2022-01-04 23:10:41', 0, '2022-01-04 23:10:41', '---'),
-(8952410, 'Atraco ', 'Atraco a mano armada en tienda', '2022-01-04 23:47:34', 0, 'c/cuatro caminos ', 'Robo en joyeria lobres a punta de pistola ', 4, 'El atracador es agresivo y tiene varias armas', 'Se necesita policia y ambulancia', NULL, 'https://www.google.com/url?sa=i&url=http', 0, 1, 1, 1, 0, '2022-01-23 23:47:34', 'El atracador ha sido ejecutado', 5, '2022-01-04 23:47:34', 0, 0, '2022-01-04 23:47:34', 'La alarma ha sido destruida por el atracador', 0, '2022-01-04 23:47:34', 0, '2022-01-04 23:47:34', '---'),
+(4859720, 'Atasco', 'Ha habido un atasco ', '2022-01-04 23:10:41', 3, 'avenida manolita', 'Colisión entre dos coches', 1, 'La gente está agresiva', 'Se necesita policía', '', 'https://www.google.com/url?sa=i&url=http', 1, 2, 1, 1, 1, '2022-01-04 23:10:41', 'Resstablecer alarma', 9, '2022-01-04 23:10:41', 2, 3, '2022-01-04 23:10:41', '', 0, '2022-01-04 23:10:41', 0, '2022-01-04 23:10:41', '---'),
+(8952410, 'Atraco ', 'Atraco a mano armada en tienda', '2022-01-04 23:47:34', 0, 'c/cuatro caminos ', 'Robo en joyeria lobres a punta de pistola ', 2, 'El atracador es agresivo y tiene varias armas', 'Se necesita policia y ambulancia', '', 'https://www.google.com/url?sa=i&url=http', 0, 1, 1, 1, 0, '2022-01-23 23:47:34', 'El atracador ha sido ejecutado', 5, '2022-01-04 23:47:34', 0, 0, '2022-01-04 23:47:34', 'La alarma ha sido destruida por el atracador', 0, '2022-01-04 23:47:34', 0, '2022-01-04 23:47:34', '---'),
 (8974521, 'Accidente de tráfico', 'Colisión frontal entre turismo y motocicleta', '2022-01-05 23:10:41', 1, 'Avenida chamartín', 'Tráfico cortado', 3, 'No hay detalles', 'Se necesita grúa', NULL, 'https://www.google.com/url?sa=i&url=http', 0, 0, 1, 1, 1, '2022-01-06 23:10:41', 'El conductor de la motocicleta ha fallecido', 1, '2022-01-05 23:10:41', 0, 0, '2022-01-04 23:10:41', '---', 0, '2022-01-04 23:10:41', 0, '2022-01-04 23:10:41', '---');
 
 -- --------------------------------------------------------
@@ -102,9 +102,9 @@ CREATE TABLE `alerta_comentarios` (
 --
 
 INSERT INTO `alerta_comentarios` (`id`, `alerta_id`, `crea_usuario_id`, `crea_fecha`, `modi_usuario_id`, `modi_fecha`, `texto`, `comentario_id`, `cerrado`, `num_denuncias`, `fecha_denuncia1`, `bloqueado`, `bloqueo_usuario_id`, `bloqueo_fecha`, `bloqueo_notas`) VALUES
-(4894, 8952410, 0, '2022-01-04 23:58:25', 0, '2022-01-04 23:58:25', 'La alerta ha tardado en procesarse 1 hora', 1, 1, 0, '2022-01-04 23:58:25', 0, 0, '2022-01-04 23:58:25', '-------'),
-(4899, 4859720, 0, '2022-01-04 23:56:03', 0, '2022-01-04 23:56:03', 'La alerta ha sido ejecutada correctamente', 0, 1, 0, '2022-01-04 23:56:03', 1, 0, '2022-01-04 23:56:03', '--------'),
-(8974521, 21475, 0, '2022-01-08 23:56:03', 0, '2022-01-04 23:56:03', 'La alerta ha sido demasiado lenta', 1, 1, 0, '2022-01-04 23:56:03', 0, 0, '2022-01-04 23:56:03', '--------');
+(8974525, 4859720, 0, NULL, 0, NULL, 'El atasco aun no se ha resuelto', 0, 0, 0, NULL, 0, 0, NULL, ''),
+(8974526, 8952410, 0, NULL, 0, NULL, 'El atraco se realiza a mano armada', 0, 0, 0, NULL, 0, 0, NULL, ''),
+(8974527, 8974521, 0, NULL, 0, NULL, 'se han chocado dos coches xd', 0, 0, 0, NULL, 0, 0, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -169,6 +169,15 @@ CREATE TABLE `areas` (
   `nombre` varchar(50) NOT NULL COMMENT 'Nombre del area que lo identifica.',
   `area_id` int(12) UNSIGNED DEFAULT 0 COMMENT 'Area relacionada. Nodo padre de la jerarquia o CERO si es nodo raiz.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `areas`
+--
+
+INSERT INTO `areas` (`id`, `clase_area_id`, `nombre`, `area_id`) VALUES
+(1, 1, 'europa', 0),
+(2, 1, 'españa', 1),
+(3, 1, 'italia', 1);
 
 -- --------------------------------------------------------
 
@@ -317,10 +326,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nick`, `nombre`, `apellidos`, `fecha_nacimiento`, `direccion`, `area_id`, `rol`, `fecha_registro`, `confirmado`, `fecha_acceso`, `num_accesos`, `bloqueado`, `bloqueo_usuario_id`, `bloqueo_fecha`, `bloqueo_notas`) VALUES
-(1, 'sysadmin', 'sysadmin', 'sysAdmin', 'sysAdmin', 'Administrador', NULL, NULL, 0, 'S', '2022-01-04 22:59:59', 1, NULL, 0, 0, 0, NULL, NULL),
-(2, 'admin', 'admin', 'admin', 'Admin', 'Administrador', NULL, NULL, 0, 'A', '2022-01-04 22:59:59', 1, NULL, 0, 0, 0, NULL, NULL),
-(3, 'moderador', 'moderador', 'moderador', 'Moderador', 'Moderador', NULL, NULL, 0, 'M', '2022-01-04 22:59:59', 1, NULL, 0, 0, 0, NULL, NULL),
-(4, 'usuario1', 'usuario1', 'usuario1', 'NombreUSU1', 'ApellidoUSU1', NULL, NULL, 0, 'N', '2022-01-04 22:59:59', 1, NULL, 0, 0, 0, NULL, NULL);
+(7, 'sysadmin@usuarioyii.com', 'fstC9C5R8CAkI', 'sysAdmin', 'sysAdmin', 'Apellido1 Apellido2', NULL, '', 0, 'S', '2022-01-11 00:39:52', 1, NULL, 0, 0, 0, NULL, NULL),
+(8, 'administrador@usuarioyii.com', 'fsP33Rmej4VL6', 'administrador', 'administrador', 'Apellido1 Apellido2', NULL, NULL, 0, 'A', '2022-01-11 00:46:10', 1, NULL, 0, 0, 0, NULL, NULL),
+(9, 'moderador@usuarioyii.com', 'fsZOZB6hXbXOM', 'moderador', 'moderador', 'Apellido1 Apellido2', NULL, NULL, 0, 'M', '2022-01-11 00:46:38', 1, NULL, 0, 0, 0, NULL, NULL),
+(10, 'usuariovalido@usuarioyii.com', 'fsMQwHSDJFkrU', 'usuariovalido', 'usuariovalido', 'Apellido1 Apellido2', NULL, NULL, 0, 'N', '2022-01-11 00:47:26', 1, NULL, 0, 0, 0, NULL, NULL),
+(11, 'usuariobloqueado@usuarioyii.com', 'fsTi8Xqurf5Vc', 'usuariobloqueado', 'usuariobloqueado', 'Apellido1 Apellido2', NULL, NULL, 0, 'N', '2022-01-11 00:48:09', 1, NULL, 0, 1, 0, NULL, NULL),
+(12, 'usuariosinconfirmar@usuariosyii.com', 'fsFdjWyrVuluY', 'usuariosinconfirmar', 'usuariosinconfirmar', 'Apellido1 Apellido2', NULL, NULL, 0, 'N', '2022-01-11 00:49:21', 0, NULL, 0, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -425,8 +436,7 @@ ALTER TABLE `logs`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_UNIQUE` (`email`),
-  ADD UNIQUE KEY `nick_UNIQUE` (`nick`);
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
 -- Indices de la tabla `usuarios_area_moderacion`
@@ -454,7 +464,7 @@ ALTER TABLE `alertas`
 -- AUTO_INCREMENT de la tabla `alerta_comentarios`
 --
 ALTER TABLE `alerta_comentarios`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8974522;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8974528;
 
 --
 -- AUTO_INCREMENT de la tabla `alerta_etiquetas`
@@ -472,7 +482,7 @@ ALTER TABLE `alerta_imagenes`
 -- AUTO_INCREMENT de la tabla `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -496,13 +506,13 @@ ALTER TABLE `etiquetas`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33800;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_area_moderacion`
@@ -514,7 +524,7 @@ ALTER TABLE `usuarios_area_moderacion`
 -- AUTO_INCREMENT de la tabla `usuario_incidencias`
 --
 ALTER TABLE `usuario_incidencias`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4859736;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

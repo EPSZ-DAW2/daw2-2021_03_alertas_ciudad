@@ -13,7 +13,6 @@ $this->title = 'Alertas';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<?//= $model->render('view') ?>
 
 <div class="alertas-index">
 

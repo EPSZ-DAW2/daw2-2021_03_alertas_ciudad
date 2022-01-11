@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\UsuarioIncidencias;
 use app\models\UsuarioIncidenciasSearch;
 use yii\web\Controller;
@@ -103,7 +104,7 @@ class UsuarioIncidenciasController extends Controller
             $model->loadDefaultValues();
         }
         $model->crea_fecha=date("Y-m-d H:m:s");
-
+        $model->origen_usuario_id=Yii::$app->user->id;
         return $this->render('createpublico', [
             'model' => $model,
         ]);

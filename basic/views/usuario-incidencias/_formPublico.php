@@ -12,7 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'crea_fecha')->textInput() ?>
+    <?= $form->field($model, 'crea_fecha')->textInput(['readonly' => true,]) ?>
+    <?= $form->field($model, 'origen_usuario_id')->hiddenInput(['readonly' => true,]) ?>
 
     <?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
 

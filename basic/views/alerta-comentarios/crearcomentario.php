@@ -11,8 +11,6 @@ use yii\filters\VerbFilter;
 /* @var $model app\models\AlertaComentarios */
 
 $this->title = 'Publicar Comentario';
-$this->params['breadcrumbs'][] = ['label' => 'Alerta Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alerta-comentarios-create">
 

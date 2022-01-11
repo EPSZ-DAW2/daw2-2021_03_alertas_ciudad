@@ -10,8 +10,7 @@ use app\models\UsuarioIncidencias;
 /* @var $model app\models\Usuarios */
 
 $this->title = $model->email;
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="usuarios-view">
@@ -55,8 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-<?= Html::a('Cambiar datos', ['usuarios/updatepublico', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-<?= Html::a('Solicitar baja', ['perfil', 'id' => $model->id, 'incidencia'=>'1'], ['class' => 'btn btn-success']) ?>
+<?= Html::a('Cambiar datos', ['usuarios/updatepublico', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+<hr>
+<?= Html::a('Solicitar baja', ['perfil', 'id' => $model->id, 'incidencia'=>'1'], ['class' => 'btn btn-danger']) ?>
 <hr>
 <?php 
 

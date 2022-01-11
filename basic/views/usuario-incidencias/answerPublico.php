@@ -8,8 +8,6 @@ use yii\helpers\Html;
 //esta es la vista para responder a las incidencias
 
 $this->title = 'Answer Usuario Incidencias';
-$this->params['breadcrumbs'][] = ['label' => 'Usuario Incidencias', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-incidencias-create">
 

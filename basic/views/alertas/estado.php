@@ -6,9 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Alertas */
 
-$this->title = 'Estado de la alarma';
-$this->params['breadcrumbs'][] = ['label' => 'Alertas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Estado de la alerta';
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="alertas-view">

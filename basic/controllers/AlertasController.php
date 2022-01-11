@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Alertas;
 use app\models\AlertasSearch;
+use app\models\UsuarioIncidencias;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -142,6 +144,16 @@ class AlertasController extends Controller
        $model = $this->findModel($id);
        $model->num_denuncias = $model->num_denuncias + 1;
        $model->save();
+
+        // CREAMOS LA INCIDENCIA DEL REGISTRO
+        $incidencia = new UsuarioIncidencias();
+        $incidencia->crea_fecha=date("Y-m-d H:m:s");
+        $incidencia->clase_incidencia_id="D";
+        $incidencia->texto="Alerta denunciada";
+        $incidencia->alerta_id=$id;
+        $incidencia->destino_usuario_id="0";
+        $incidencia->origen_usuario_id=Yii::$app->user->id;
+        $incidencia->insert();
 
        return $this->render('estado', [
             'model' => $this->findModel($id),
